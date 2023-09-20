@@ -1,0 +1,18 @@
+{
+	"prettier.enable": true,
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": false,
+	"prettier.phpPath": "php",
+	"prettier.singleQuote": true,
+	"prettier.trailingComma": "all",
+	"prettier.printWidth": 100,
+	"prettier.jsxSingleQuote": true,
+	"prettier.jsxBracketSameLine": false,
+	"prettier.proseWrap": "preserve",
+	"prettier.endOfLine": "lf",
+	"coc.preferences.formatOnSaveFiletypes": ["php", "html", "css", "javascript"],
+	"coc.source.filetypes": {
+	  "javascript": "eslint"
+	}
+  }
+  
