@@ -201,6 +201,12 @@ session_dir = "C:/nvim_sessions/"
 function SaveSession()
   vim.cmd("NvimTreeClose")
 
+
+  if vim.fn.getcwd():gsub("\\", "/"):gsub("~", vim.fn.expand("$HOME")) == vim.fn['stdpath']('config'):gsub("\\", "/"):gsub("~", vim.fn.expand("$HOME")) then
+    print("Cannot create a session for the Neovim config folder")
+    return
+  end
+
   -- Create the session directory if it doesn't exist
   createSessionDirectory()
 
@@ -491,3 +497,7 @@ vim.api.nvim_set_keymap('n', '<Leader>fp', ':CocCommand prettier.formatFile<CR>'
 
 -- remap leader+w to save file
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, silent = true })
+
+-- Map Caps Lock to Escape in Neovim
+vim.api.nvim_set_keymap('n', '<CapsLock>', '<Esc>', { noremap = true, silent = true })
+
