@@ -27,8 +27,11 @@ return require('packer').startup(function(use)
     cmd = 'ALEEnable',
     config = 'vim.cmd[[ALEEnable]]'
   }
+
+  use 'nvim-treesitter/nvim-treesitter'
+
   -- You can specify multiple plugins in a single call
-  use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
+  -- use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
 
 
   -- Use specific branch, dependency and run lua file after load
@@ -42,6 +45,10 @@ return require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
+
+  use 'mbbill/undotree'
+
+  use 'tpope/vim-fugitive'
 
 
   use {
@@ -57,7 +64,7 @@ return require('packer').startup(function(use)
       open_mapping = [[<F7>]],
       shade_terminals = false,
       persist_size = true,
-      direction = 'horizontal',
+      direction = 'float',
     }
   end}
 

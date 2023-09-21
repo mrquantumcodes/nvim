@@ -1,0 +1,85 @@
+
+-- Function to save the current session and buffers
+function SaveSessionAndBuffers()
+  -- Save the current directory in cwd.txt
+  local current_dir = vim.fn.getcwd()
+  local cwd_file = io.open("C:/nvim_sessions/cwd.txt", "w")
+  cwd_file:write(current_dir)
+  cwd_file:close()
+
+  -- Get the list of open buffers using the :ls command
+  local buffer_list = vim.fn.execute("ls")
+  local buffer_lines = vim.fn.split(buffer_list, "\n")
+
+  -- Open the buffers.txt file for writing
+  local buffer_file = io.open("C:/nvim_sessions/buffers.txt", "w")
+
+  -- Loop through buffer_lines and extract buffer paths
+  local buffer_paths = {}
+  for _, line in ipairs(buffer_lines) do
+    -- print(buffer_path)
+    -- print(line)
+    -- local buffer_path = line:match("\"(.-)\"$")
+
+    buffer_path = string.match(line, '%b""')
+    buffer_path = string.gsub(buffer_path, '"', "")
+
+    if buffer_path and not vim.startswith(buffer_path, "NvimTree") then
+      -- Expand tilde and remove the cwd from the path
+      buffer_path = vim.fn.fnamemodify(buffer_path, ":~:.:p")
+      buffer_path = buffer_path:gsub("~", vim.fn.expand("$HOME"))
+      buffer_path = vim.fn.fnamemodify(buffer_path, ":~:.:.")
+      buffer_paths[#buffer_paths + 1] = buffer_path
+    end
+  end
+
+  -- Write buffer paths to the file
+  for _, buffer_path in ipairs(buffer_paths) do
+    buffer_file:write(buffer_path .. "\n")
+  end
+
+  buffer_file:close()
+
+  print("Session Saved")
+end
+
+
+
+
+
+local function isempty(s)
+  return s == nil or s == ''
+end
+
+-- Function to load the session and buffers
+function LoadSessionAndBuffers()
+  -- Read the saved current directory from cwd.txt
+  local cwd_file = io.open("C:/nvim_sessions/cwd.txt", "r")
+  local current_dir = cwd_file:read("*line")
+  cwd_file:close()
+
+  -- Set the current directory to the saved directory
+  vim.fn.chdir(current_dir)
+
+  -- Read the list of buffers from buffers.txt
+  local buffer_file = io.open("C:/nvim_sessions/buffers.txt", "r")
+  if buffer_file then
+    local buffers = {}
+    for line in buffer_file:lines() do
+      table.insert(buffers, line)
+    end
+    buffer_file:close()
+
+    -- Close all current buffers
+    vim.cmd("silent! %bd")
+
+    -- Open the buffers from buffers.txt
+    for _, buffer_path in ipairs(buffers) do
+      if not isempty(buffer_path) then
+        vim.cmd("edit " .. buffer_path)
+      end
+    end
+  end
+
+  statusline()
+end

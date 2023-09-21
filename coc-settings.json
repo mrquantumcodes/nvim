@@ -10,7 +10,7 @@
 	"prettier.jsxBracketSameLine": false,
 	"prettier.proseWrap": "preserve",
 	"prettier.endOfLine": "lf",
-	"coc.preferences.formatOnSaveFiletypes": ["php", "html", "css", "javascript"],
+	"coc.preferences.formatOnSaveFiletypes": ["php", "html", "css", "javascript, lua"],
 	"coc.source.filetypes": {
 	  "javascript": "eslint"
 	}
