@@ -3,29 +3,30 @@ vim.opt.termguicolors = true
 
 -- Load plugins from plugins.lua
 require("plugins")
-require("statusline")
+vim.cmd("colorscheme catppuccin")
 
--- Load NvimTree and set it up
-require("nvim-tree").setup({
-  open_on_tab = true,
-  update_cwd = true,
-  hijack_cursor = true,
-  view = { width = 30 },
-  filters = { dotfiles = true },
-})
+require("statusline")
+-- -- Load NvimTree and set it up
+-- require("nvim-tree").setup({
+--   open_on_tab = true,
+--   update_cwd = true,
+--   hijack_cursor = true,
+--   view = { width = 30 },
+--   filters = { dotfiles = true },
+-- })
 
 -- Set line numbers to always be on and use relative line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Map Ctrl+j for previous suggestion in Coc.nvim
-vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr = true })
+-- vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr = true })
 
--- Map Ctrl+k for next suggestion in Coc.nvim
-vim.api.nvim_set_keymap('i', '<C-k>', 'coc#pum#next(1)', { noremap = true, expr = true })
+-- -- Map Ctrl+k for next suggestion in Coc.nvim
+-- vim.api.nvim_set_keymap('i', '<C-k>', 'coc#pum#next(1)', { noremap = true, expr = true })
 
 -- Map Ctrl+l for accept suggestion in Coc.nvim
-vim.api.nvim_set_keymap('i', '<C-l>', 'coc#_select_confirm()', { noremap = true, expr = true })
+vim.api.nvim_set_keymap('i', '<C-o>', 'coc#_select_confirm()', { noremap = true, expr = true })
 
 -- Function to show or refresh Coc suggestion list
 function ShowOrRefreshCocList()
@@ -37,13 +38,11 @@ function ShowOrRefreshCocList()
 end
 
 -- Map Ctrl+Space to show or refresh Coc suggestion list
-vim.api.nvim_set_keymap('i', '<C-h>', 'coc#refresh()', { noremap = true, expr = true })
+vim.api.nvim_set_keymap('i', '<C-r>', 'coc#refresh()', { noremap = true, expr = true })
 
 
 
 
-
-vim.cmd("colorscheme catppuccin")
 
 
 -- Set tab size to 4
@@ -56,22 +55,21 @@ vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true 
 vim.g.mapleader = " "  -- Set leader key to spacebar
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
-vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ee", ":NERDTreeToggle<CR>", { noremap = true, silent = true })
+
+-- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
+vim.api.nvim_set_keymap("n", "<leader>ec", ":NERDTreeClose<CR>", { noremap = true, silent = true })
 
 -- Focus on NvimTree with leader+ft
-vim.api.nvim_set_keymap("n", "<leader>ft", ":NvimTreeFocus<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ft", ":NERDTreeFocus<CR>", { noremap = true, silent = true })
 
--- Focus on current buffer with leader+fb
-vim.api.nvim_set_keymap("n", "<leader>fb", "<C-W>w", { noremap = true, silent = true })
+-- Nerd Tree Search with leader+fb
+vim.api.nvim_set_keymap("n", "<leader>fb", "NERDTreeFind<CR>", { noremap = true, silent = true })
+
 
 -- Open new file in a new buffer
 vim.api.nvim_set_keymap("n", "<leader>n", ":enew<CR> :lua statuslinenodelay()<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
 
--- -- Jump to previous buffer with comma
--- vim.api.nvim_set_keymap("n", ",", ":bprev<CR> :lua statuslinenodelay()<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
-
--- -- Jump to next buffer with period
--- vim.api.nvim_set_keymap("n", ".", ":bnext<CR> :lua statuslinenodelay()<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 
@@ -150,47 +148,6 @@ vim.api.nvim_set_keymap("n", "<F7>", ":ToggleTermOpenAll<CR>", { noremap = true,
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
--- -- ... (other settings and keybindings)
-
--- -- Automatically format code using Prettier on save
--- vim.cmd("autocmd BufWritePre * Prettier")
-
--- local cmp = require("cmp")
-
--- require("luasnip.loaders.from_vscode").lazy_load()
-
--- cmp.setup({
---   mapping = cmp.mapping.preset.insert({
---       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
---       ['<C-f>'] = cmp.mapping.scroll_docs(4),
---       ['<C-o>'] = cmp.mapping.complete(),
---       ['<C-e>'] = cmp.mapping.abort(),
---       ['<CR>'] = cmp.mapping.confirm({ select = true }),
---     }),
---   snippet = {
---     expand = function(args)
---       require('luasnip').lsp_expand(args.body)
---     end,
---   },
---   sources = cmp.config.sources({
---     { name = 'nvim_lsp' },
---     { name = 'luasnip' },
---   }, {
---     { name = 'buffer' },
---   }),
--- })
-
-
--- require('nvim-autopairs').setup{} -- Add this line
-
-
-function FormatCode()
-  vim.cmd("normal gg=G``")
-end
-
--- vim.api.nvim_set_keymap("n", "<leader>fp", ":lua FormatCode()<CR>", { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', '<Leader>fp', ':CocCommand prettier.formatFile<CR>', { noremap = true, silent = true })
 
 -- remap leader+w to save file
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, silent = true })

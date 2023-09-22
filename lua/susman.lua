@@ -21,9 +21,11 @@ function filenameToPath(filename)
 end
 
 
+
+
 -- Function to save the current session with a name based on the current working directory
 function SaveSession()
-  vim.cmd("NvimTreeClose")
+  vim.cmd("NERDTreeClose")
 
 
   if vim.fn.getcwd():gsub("\\", "/"):gsub("~", vim.fn.expand("$HOME")) == vim.fn['stdpath']('config'):gsub("\\", "/"):gsub("~", vim.fn.expand("$HOME")) then

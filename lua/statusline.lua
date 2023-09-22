@@ -27,9 +27,9 @@ local function mode()
 end
 
 _G.statusline = function()
-  vim.defer_fn(function()
     local set_color_1 = "%#PmenuSel#"
-    local set_color_2 = "%#LineNr#"
+    local set_color_2 = "%#PmenuSel#"
+    -- local set_color_2 = "%#LineNr#"
     local current_mode = mode()
     local file_name = " %f"
     local modified = "%m"
@@ -53,42 +53,9 @@ _G.statusline = function()
         fileformat,
         percentage,
         linecol
-    )	
-  end, 345)
-end
-
-_G.statuslinenodelay = function()
-  vim.defer_fn(function()
-    local set_color_1 = "%#PmenuSel#"
-    local set_color_2 = "%#LineNr#"
-    local current_mode = mode()
-    local file_name = " %f"
-    local modified = "%m"
-    local align_right = "%="
-    local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
-    local fileformat = " [%{&fileformat}]"
-    local filetype = " %y"
-    local percentage = " %p%%"
-    local linecol = " %l:%c"
-
-    vim.opt.statusline = string.format(
-        "%s %s %s%s%s%s%s%s%s%s%s",
-        set_color_1,
-        current_mode,
-        set_color_2,
-        file_name,
-        modified,
-        align_right,
-        filetype,
-        fileencoding,
-        fileformat,
-        percentage,
-        linecol
-    )	
-  end, 100)
+    )
 end
 
 -- Delay setting the statusline by 1 second
 
-    statusline()
-
+statusline()

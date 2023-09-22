@@ -13,6 +13,7 @@
 	"coc.preferences.formatOnSaveFiletypes": ["php", "html", "css", "javascript, lua"],
 	"coc.source.filetypes": {
 	  "javascript": "eslint"
-	}
+	},
+	"emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact", "php": "html"}
   }
   

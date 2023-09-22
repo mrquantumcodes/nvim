@@ -3,14 +3,14 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
+return require('packer').startup({function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
   use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Simple plugins can be specified as strings
-  use 'rstacruz/vim-closer'
+  use {'rstacruz/vim-closer', cond=false} -- disable closer
 
   -- Lazy loading:
   -- Load on specific commands
@@ -34,13 +34,6 @@ return require('packer').startup(function(use)
   -- use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
 
 
-  -- Use specific branch, dependency and run lua file after load
-  use {
-    'glepnir/galaxyline.nvim', branch = 'main', config = function() require'statusline' end,
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
-
-
   use {'neoclide/coc.nvim', branch = 'release'}
 
   use 'nvim-lua/plenary.nvim'
@@ -51,11 +44,18 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
 
 
+  -- use {
+  --   'nvim-tree/nvim-tree.lua',
+  --   requires = {
+  --     'nvim-tree/nvim-web-devicons', -- optional
+  --   },
+  -- }
+
   use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional
-    },
+    'preservim/nerdtree',
+      requires = {
+        'ryanoasis/vim-devicons', -- optional
+      },
   }
 
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
@@ -68,36 +68,24 @@ return require('packer').startup(function(use)
     }
   end}
 
-  use('neovim/nvim-lspconfig')
-  use('jose-elias-alvarez/null-ls.nvim')
-  use('MunifTanjim/prettier.nvim')
+  -- use('neovim/nvim-lspconfig')
+  -- use('jose-elias-alvarez/null-ls.nvim')
+  --  use('MunifTanjim/prettier.nvim')
 
-  -- You can alias plugin names
-  use {'dracula/vim', as = 'dracula'}
-
-  use { 'windwp/nvim-autopairs' }                    -- auto close brackets, etc.
+  use { 'cohama/lexima.vim' }                    -- auto close brackets, etc.
 
   use { 'Yggdroot/indentLine' }  -- see indentation
   
-  use "yuchanns/phpfmt.nvim"
 
   use "MunifTanjim/nui.nvim"
 
   use {'stevearc/dressing.nvim'}
 
-  -- use { 
-  --   'windwp/nvim-ts-autotag', 
-  --   opt = true, 
-  --   ft = 'typescriptreact', 
-  --   requires = {{'nvim-treesitter/nvim-treesitter'}},
-  --   config = function() require('nvim-ts-autotag').setup() end,
-  -- }
 
-  -- use ('hrsh7th/nvim-cmp')
-  -- use ('hrsh7th/cmp-nvim-lsp')
-  -- use ('L3MON4D3/LuaSnip')
-  -- use ('saadparwaiz1/cmp_luasnip')
-  -- use ("rafamadriz/friendly-snippets")
-
-
-end)
+end,config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'single' })
+    end
+  }
+}})
