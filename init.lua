@@ -1,23 +1,26 @@
 -- Set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
+-- Set leader key to spacebar
+vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
+vim.g.mapleader = " "  -- Set leader key to spacebar
+
 -- Load plugins from plugins.lua
 require("plugins")
-vim.cmd("colorscheme catppuccin")
+-- require("treesitter")
+vim.cmd("colorscheme tokyonight-night")
+-- vim.cmd("colorscheme torte")
 
 require("statusline")
--- -- Load NvimTree and set it up
--- require("nvim-tree").setup({
---   open_on_tab = true,
---   update_cwd = true,
---   hijack_cursor = true,
---   view = { width = 30 },
---   filters = { dotfiles = true },
--- })
+require("file_tree")
+vim.api.nvim_set_keymap('n', '<leader>du', ':lua show_file_tree()<CR>', {})
+
+
 
 -- Set line numbers to always be on and use relative line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.ignorecase = true
 
 -- Map Ctrl+j for previous suggestion in Coc.nvim
 -- vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr = true })
@@ -38,9 +41,7 @@ function ShowOrRefreshCocList()
 end
 
 -- Map Ctrl+Space to show or refresh Coc suggestion list
-vim.api.nvim_set_keymap('i', '<C-r>', 'coc#refresh()', { noremap = true, expr = true })
-
-
+vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = true })
 
 
 
@@ -49,10 +50,6 @@ vim.api.nvim_set_keymap('i', '<C-r>', 'coc#refresh()', { noremap = true, expr = 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-
--- Set leader key to spacebar
-vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.g.mapleader = " "  -- Set leader key to spacebar
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
 vim.api.nvim_set_keymap("n", "<leader>ee", ":NERDTreeToggle<CR>", { noremap = true, silent = true })
@@ -68,19 +65,19 @@ vim.api.nvim_set_keymap("n", "<leader>fb", "NERDTreeFind<CR>", { noremap = true,
 
 
 -- Open new file in a new buffer
-vim.api.nvim_set_keymap("n", "<leader>n", ":enew<CR> :lua statuslinenodelay()<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>n", ":enew<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
 
 
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 
 -- Close current buffer with leader+b+e
-vim.api.nvim_set_keymap("n", "<leader>be", ":bd<CR> :lua statuslinenodelay()<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>be", ":bd<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
 
 
 session_dir = "C:/nvim_sessions/"
 
 
-require('findex')
+-- require('findex')
 
 require('susman')
 
@@ -132,7 +129,7 @@ require('telescope').setup({
 })
 
 -- Keybindings for Telescope and ripgrep
--- vim.api.nvim_set_keymap("n", "<leader>ff", [[<Cmd>Telescope find_files<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ff", [[<Cmd>Telescope find_files<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>fg", [[<Cmd>Telescope live_grep<CR>]], { noremap = true, silent = true })
 
 
@@ -150,7 +147,7 @@ vim.opt.smartindent = true
 
 
 -- remap leader+w to save file
-vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>w', ':lua SaveSession()<CR>:w<CR>', { noremap = true, silent = true })
 
 -- Map Caps Lock to Escape in Neovim
 vim.api.nvim_set_keymap('n', '<CapsLock>', '<Esc>', { noremap = true, silent = true })

@@ -21,11 +21,12 @@ function filenameToPath(filename)
 end
 
 
-
+vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>:lua SaveSession()<CR>', { noremap = true, silent = true })
 
 -- Function to save the current session with a name based on the current working directory
 function SaveSession()
   vim.cmd("NERDTreeClose")
+  vim.cmd("UndotreeHide")
 
 
   if vim.fn.getcwd():gsub("\\", "/"):gsub("~", vim.fn.expand("$HOME")) == vim.fn['stdpath']('config'):gsub("\\", "/"):gsub("~", vim.fn.expand("$HOME")) then

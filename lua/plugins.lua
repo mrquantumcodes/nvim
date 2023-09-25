@@ -7,7 +7,12 @@ return require('packer').startup({function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use { "catppuccin/nvim", as = "catppuccin" }
+  -- use 'tpope/vim-dadbod'
+  -- use 'kristijanhusak/vim-dadbod-ui'
+
+  -- use { "catppuccin/nvim", as = "catppuccin" }
+
+  use 'folke/tokyonight.nvim'
 
   -- Simple plugins can be specified as strings
   use {'rstacruz/vim-closer', cond=false} -- disable closer
@@ -28,7 +33,6 @@ return require('packer').startup({function(use)
     config = 'vim.cmd[[ALEEnable]]'
   }
 
-  use 'nvim-treesitter/nvim-treesitter'
 
   -- You can specify multiple plugins in a single call
   -- use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
@@ -42,6 +46,10 @@ return require('packer').startup({function(use)
   use 'mbbill/undotree'
 
   use 'tpope/vim-fugitive'
+
+  use 'tpope/vim-surround'
+
+  use 'AndrewRadev/tagalong.vim'
 
 
   -- use {
@@ -81,6 +89,7 @@ return require('packer').startup({function(use)
 
   use {'stevearc/dressing.nvim'}
 
+  use 'tpope/vim-commentary'
 
 end,config = {
   display = {
