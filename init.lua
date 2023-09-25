@@ -12,7 +12,7 @@ vim.cmd("colorscheme tokyonight-night")
 -- vim.cmd("colorscheme torte")
 
 require("statusline")
-require("file_tree")
+-- require("file_tree")
 vim.api.nvim_set_keymap('n', '<leader>du', ':lua show_file_tree()<CR>', {})
 
 
