@@ -10,10 +10,27 @@
 	"prettier.jsxBracketSameLine": false,
 	"prettier.proseWrap": "preserve",
 	"prettier.endOfLine": "lf",
-	"coc.preferences.formatOnSaveFiletypes": ["php", "html", "css", "javascript, lua"],
+	"coc.preferences.formatOnSaveFiletypes": [
+		"php",
+		"html",
+		"css",
+		"javascript",
+		"lua"
+	],
 	"coc.source.filetypes": {
-	  "javascript": "eslint"
+		"javascript": "eslint"
 	},
-	"emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact", "php": "html"}
-  }
-  
+	"emmet.includeLanguages": {
+		"vue-html": "html",
+		"javascript": "javascriptreact",
+		"php": "html"
+	},
+	"coc-html": {
+		"filetypes": [
+			"html",
+			"php",
+			"js",
+			"javascript"
+		]
+	}
+}

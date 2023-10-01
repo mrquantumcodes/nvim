@@ -91,6 +91,10 @@ return require('packer').startup({function(use)
 
   use 'tpope/vim-commentary'
 
+  use {
+    "mrquantumcodes/bufferchad.nvim"
+  }
+
 end,config = {
   display = {
     open_fn = function()

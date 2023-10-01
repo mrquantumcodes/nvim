@@ -3,17 +3,18 @@ vim.opt.termguicolors = true
 
 -- Set leader key to spacebar
 vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.g.mapleader = " "  -- Set leader key to spacebar
+vim.g.mapleader = " " -- Set leader key to spacebar
 
 -- Load plugins from plugins.lua
 require("plugins")
 -- require("treesitter")
 vim.cmd("colorscheme tokyonight-night")
+vim.cmd("set invhlsearch")
 -- vim.cmd("colorscheme torte")
 
 require("statusline")
--- require("file_tree")
-vim.api.nvim_set_keymap('n', '<leader>du', ':lua show_file_tree()<CR>', {})
+
+require("persistent_undo")
 
 
 
@@ -21,6 +22,7 @@ vim.api.nvim_set_keymap('n', '<leader>du', ':lua show_file_tree()<CR>', {})
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ignorecase = true
+vim.opt.foldmethod = "manual"
 
 -- Map Ctrl+j for previous suggestion in Coc.nvim
 -- vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr = true })
@@ -34,9 +36,9 @@ vim.api.nvim_set_keymap('i', '<C-o>', 'coc#_select_confirm()', { noremap = true,
 -- Function to show or refresh Coc suggestion list
 function ShowOrRefreshCocList()
   if vim.fn.pumvisible() == 1 then
-      return vim.fn['coc#refresh']()
+    return vim.fn['coc#refresh']()
   else
-      return vim.fn['coc#complete']()
+    return vim.fn['coc#complete']()
   end
 end
 
@@ -44,7 +46,11 @@ end
 vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = true })
 
 
-
+require("bufferchad").setup({
+  mapping = "<leader>bb",
+  mark_mapping = "<leader>bm",
+  order = "LAST_USED_UP",
+})
 
 -- Set tab size to 4
 vim.opt.tabstop = 4
@@ -81,7 +87,7 @@ session_dir = "C:/nvim_sessions/"
 
 require('susman')
 
-require('buffman')
+-- require('buffman')
 
 
 -- Set up Telescope
@@ -100,10 +106,10 @@ require('telescope').setup({
     },
     sorting_strategy = 'ascending',
     file_ignore_patterns = { -- List of folders/files to exclude
-      'node_modules',
-      'build',
-      'to_ignore',
-      'images',
+      '**/node_modules/**',
+      '**build/**',
+      '**to_ignore/**',
+      '**images/**',
       '.jpg',
       '.jpeg',
       '.png',
@@ -121,9 +127,9 @@ require('telescope').setup({
   },
   extensions = {
     fzf = {
-      fuzzy = true, -- Enable fuzzy finder
+      fuzzy = true,                   -- Enable fuzzy finder
       override_generic_sorter = true, -- Use the FZF sorter for all file types
-      override_file_sorter = true, -- Use the FZF sorter for file types
+      override_file_sorter = true,    -- Use the FZF sorter for file types
     },
   },
 })
@@ -134,7 +140,9 @@ vim.api.nvim_set_keymap("n", "<leader>fg", [[<Cmd>Telescope live_grep<CR>]], { n
 
 
 -- Set F7 key to toggle the terminal
-vim.api.nvim_set_keymap("n", "<F7>", ":ToggleTermOpenAll<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<F7>", ":ToggleTermOpenAll<CR>", { noremap = true, silent = true })
+
+require('terminal')
 
 
 -- Set Prettier configuration
@@ -151,3 +159,6 @@ vim.api.nvim_set_keymap('n', '<Leader>w', ':lua SaveSession()<CR>:w<CR>', { nore
 
 -- Map Caps Lock to Escape in Neovim
 vim.api.nvim_set_keymap('n', '<CapsLock>', '<Esc>', { noremap = true, silent = true })
+
+
+require('teltest')
