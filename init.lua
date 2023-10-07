@@ -1,12 +1,12 @@
+require("plugins_lazy")
 -- Set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
 -- Set leader key to spacebar
 vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.g.mapleader = " " -- Set leader key to spacebar
+-- vim.g.mapleader = " " -- Set leader key to spacebar
 
 -- Load plugins from plugins.lua
-require("plugins")
 -- require("treesitter")
 vim.cmd("colorscheme tokyonight-night")
 vim.cmd("set invhlsearch")
@@ -16,48 +16,6 @@ require("statusline")
 
 require("persistent_undo")
 
-
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = {  },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  -- List of parsers to ignore installing (or "all")
-  ignore_install = {  },
-
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
-  highlight = {
-    enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    disable = { "json" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    -- disable = function(lang, buf)
-    --     local max_filesize = 100 * 1024 -- 100 KB
-    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-    --     if ok and stats and stats.size > max_filesize then
-    --         return true
-    --     end
-    -- end,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
 
 
 -- Set line numbers to always be on and use relative line numbers
@@ -108,26 +66,31 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
-vim.api.nvim_set_keymap("n", "<leader>ee", ":NERDTreeToggle<CR>", { noremap = true, silent = true })
+-- See plugins_lazy
+-- vim.api.nvim_set_keymap("n", "<leader>ee", ":Neotree toggle<CR>", { noremap = true, silent = true })
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
-vim.api.nvim_set_keymap("n", "<leader>ec", ":NERDTreeClose<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ec", ":Neotree close<CR>", { noremap = true, silent = true })
 
 -- Focus on NvimTree with leader+ft
-vim.api.nvim_set_keymap("n", "<leader>ft", ":NERDTreeFocus<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ft", ":Neotree focus<CR>", { noremap = true, silent = true })
 
 -- Nerd Tree Search with leader+fb
-vim.api.nvim_set_keymap("n", "<leader>fb", "NERDTreeFind<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>fb", "NERDTreeFind<CR>", { noremap = true, silent = true })
+
+
+
+vim.api.nvim_set_keymap('i', '<C-s>', '<Esc> :Neotree close<CR> :UndotreeHide<CR> :w<CR>:lua retrospect.  SaveSession()<CR>', { noremap = true, silent = true })
 
 
 -- Open new file in a new buffer
-vim.api.nvim_set_keymap("n", "<leader>n", ":enew<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>n", ":enew<CR> :Neotree close<CR> :UndotreeHide<CR> :lua retrospect.SaveSession()<CR>", { noremap = true, silent = true })
 
 
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 
 -- Close current buffer with leader+b+e
-vim.api.nvim_set_keymap("n", "<leader>be", ":bd<CR> :lua SaveSession()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>be", ":bd<CR> :Neotree close<CR> :UndotreeHide<CR> :lua retrospect.SaveSession()<CR>", { noremap = true, silent = true })
 
 
 -- session_dir = vim.fn.stdpath('data') .. "\\nvim_sessions\\"
@@ -135,7 +98,10 @@ vim.api.nvim_set_keymap("n", "<leader>be", ":bd<CR> :lua SaveSession()<CR>", { n
 
 -- require('findex')
 
-require('lua.retrospect.lua.retrospect').setup({})
+retrospect = require('retrospect')
+retrospect.setup({
+  style = "default"
+})
 
 -- require('buffman')
 
@@ -205,10 +171,11 @@ vim.opt.smartindent = true
 
 
 -- remap leader+w to save file
-vim.api.nvim_set_keymap('n', '<Leader>w', ':lua SaveSession()<CR>:w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>w', ':Neotree close<CR> :UndotreeHide<CR> :lua retrospect.SaveSession()<CR>:w<CR>', { noremap = true, silent = true })
 
 -- Map Caps Lock to Escape in Neovim
 vim.api.nvim_set_keymap('n', '<CapsLock>', '<Esc>', { noremap = true, silent = true })
 
 
 require('teltest')
+require('buffline')
