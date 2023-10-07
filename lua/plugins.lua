@@ -35,7 +35,7 @@ return require('packer').startup({function(use)
 
 
   -- You can specify multiple plugins in a single call
-  -- use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
+  use {'nvim-treesitter/nvim-treesitter', run = "TSUpdate"}
 
 
   use {'neoclide/coc.nvim', branch = 'release'}

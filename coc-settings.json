@@ -15,7 +15,8 @@
 		"html",
 		"css",
 		"javascript",
-		"lua"
+		"lua",
+		"json"
 	],
 	"coc.source.filetypes": {
 		"javascript": "eslint"
