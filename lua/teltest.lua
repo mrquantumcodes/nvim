@@ -52,3 +52,25 @@
 -- -- Example usage:
 -- -- local buffer_paths = { 'file1.txt', 'file2.txt', 'file3.txt' }
 -- -- CreateBufferListWindow(buffer_paths)
+
+
+-- Enable icons in Netrw
+vim.cmd('set path+=**')					-- search current directory recursively
+vim.g.netrw_dir = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_list_hide = ''
+vim.cmd('let g:netrw_banner = 0')
+vim.cmd('let g:netrw_browse_split = 4')
+vim.cmd('let g:netrw_altv = 1')
+vim.cmd('let g:netrw_winsize = 25')
+vim.cmd('au BufEnter * if (winnr("$") == 1 && exists("b:netrw") && (b:netrw == 1 || b:netrw == 0)) | q | endif')
+
+function CloseNetrw()
+    local buf_exists = vim.fn.bufnr('Netrw') ~= -1
+    if buf_exists then
+		vim.cmd('bd ' .. vim.fn.bufnr('Netrw'))
+	end
+end
+
+-- Map <leader>+e to open Netrw in a 25% split
+-- vim.api.nvim_set_keymap('n', '<leader>ee', ':25Lex<CR>', { noremap = true, silent = true })
