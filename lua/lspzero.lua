@@ -35,13 +35,13 @@ cmp.setup({
     {name = 'path'},
     {name = 'nvim_lsp'},
     {name = 'nvim_lua'},
+    { name = "copilot", group_index = 2 },
   },
   formatting = lsp_zero.cmp_format(),
   mapping = cmp.mapping.preset.insert({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-o>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-e>'] = cmp.mapping.complete(),
   }),
 })
 
@@ -60,5 +60,5 @@ local emmet_config = {
   }
   
   -- Attach the configuration to the 'emmet_ls' language server
-  require('lspconfig').emmet_ls.setup(emmet_config)
+  require('lspconfig').emmet_language_server.setup(emmet_config)
   
