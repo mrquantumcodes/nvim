@@ -1,28 +1,29 @@
 -- Map Ctrl+j for previous suggestion in Coc.nvim
--- vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr = true })
+vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr = true })
 
--- -- Map Ctrl+k for next suggestion in Coc.nvim
--- vim.api.nvim_set_keymap('i', '<C-k>', 'coc#pum#next(1)', { noremap = true, expr = true })
+-- Map Ctrl+k for next suggestion in Coc.nvim
+vim.api.nvim_set_keymap('i', '<C-k>', 'coc#pum#next(1)', { noremap = true, expr = true })
 
 -- Map Ctrl+l for accept suggestion in Coc.nvim
--- vim.api.nvim_set_keymap('i', '<C-o>', 'coc#_select_confirm()', { noremap = true, expr = true })
+vim.api.nvim_set_keymap('i', '<C-o>', 'coc#_select_confirm()', { noremap = true, expr = true })
 
 -- Function to show or refresh Coc suggestion list
--- function ShowOrRefreshCocList()
---   if vim.fn.pumvisible() == 1 then
---     return vim.fn['coc#refresh']()
---   else
---     return vim.fn['coc#complete']()
---   end
--- end
+function ShowOrRefreshCocList()
+  if vim.fn.pumvisible() == 1 then
+    return vim.fn['coc#refresh']()
+  else
+    return vim.fn['coc#complete']()
+  end
+end
 
--- -- Map Ctrl+Space to show or refresh Coc suggestion list
--- vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = true })
+-- Map Ctrl+Space to show or refresh Coc suggestion list
+vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = true })
 
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
 -- See plugins_lazy
-vim.api.nvim_set_keymap("n", "<leader>ee", ":Neotree float<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>ee", ":Neotree float<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ee", ":25Lexplore<CR>", { noremap = true, silent = true })
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
 vim.api.nvim_set_keymap("n", "<leader>ec", ":Neotree close<CR>", { noremap = true, silent = true })
@@ -59,12 +60,12 @@ vim.api.nvim_set_keymap("n", "<leader>d",
 
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'kj', '<Esc>')
-vim.keymap.set('i', '<C-h>', '<Left>')
-vim.keymap.set('i', '<C-l>', '<Right>')
-vim.keymap.set('i', '<C-k>', '<Up>')
-vim.keymap.set('i', '<C-j>', '<Down>')
-vim.keymap.set('i', '<C-b>', '<Esc>bi')
-vim.keymap.set('i', '<C-e>', '<Esc>ea')
+-- vim.keymap.set('i', '<C-h>', '<Left>')
+-- vim.keymap.set('i', '<C-l>', '<Right>')
+-- vim.keymap.set('i', '<C-k>', '<Up>')
+-- vim.keymap.set('i', '<C-j>', '<Down>')
+-- vim.keymap.set('i', '<C-b>', '<Esc>bi')
+-- vim.keymap.set('i', '<C-e>', '<Esc>ea')
 
 
 -- Keybindings for Telescope and ripgrep
@@ -83,7 +84,7 @@ vim.api.nvim_set_keymap('n', '<Leader>w',
 vim.g.saved_cursor_position = {}
 
 -- Map Ctrl-y to insert a new line below and return to the exact cursor position
-vim.keymap.set('i', '<C-y>', '<Esc>:let g:saved_cursor_position = getpos(".")<CR>o<Up><Esc>:call setpos(".", g:saved_cursor_position)<CR>a')
+vim.keymap.set('i', '<C-j>', '<Esc>:let g:saved_cursor_position = getpos(".")<CR>o<Up><Esc>:call setpos(".", g:saved_cursor_position)<CR>a')
 
 -- Map Ctrl-z to insert a new line above and return to the exact cursor position
-vim.keymap.set('i', '<C-z>', '<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>a')
+vim.keymap.set('i', '<C-k>', '<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>a')

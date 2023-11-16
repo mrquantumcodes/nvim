@@ -14,5 +14,14 @@
 			"js",
 			"javascript"
 		]
-	}
+	},
+	"html-css-support.enabledLanguages": [
+        "html",
+        "vue",
+        "blade",
+        "htmldjango",
+        "typescriptreact",
+        "javascriptreact",
+		"php"
+    ]
 }

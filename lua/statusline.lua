@@ -6,7 +6,7 @@ vim.cmd "highlight StatusLocation guibg=#458588 guifg=#1d2021"
 vim.cmd "highlight StatusPercent guibg=#1d2021 guifg=#ebdbb2"
 vim.cmd "highlight StatusNorm guibg=none guifg=white"
 
-devicons = require 'nvim-web-devicons'
+-- devicons = require 'nvim-web-devicons'
 
 -- Function to subtract the cwd directory from a given path
 function subtract_cwd()
@@ -39,7 +39,7 @@ function subtract_cwd()
   end  
 
 function statusline()
-    f_icon = (vim.bo.filetype ~= "" and devicons.get_icon("", vim.bo.filetype) or "-")
+    -- f_icon = (vim.bo.filetype ~= "" and devicons.get_icon("", vim.bo.filetype) or "-")
 
     vim.o.statusline = " "
         .. ""
@@ -48,7 +48,7 @@ function statusline()
         .. " "
         .. " %#StatusType#"
         .. "<< "
-        .. f_icon .. " %Y"
+        -- .. f_icon .. " %Y"
         -- .. " 📃 "
         .. " >>"
         .. "%#StatusFile#"

@@ -9,7 +9,7 @@ vim.g.mapleader = " "        -- sets leader key
 vim.g.netrw_banner = 0       -- gets rid of the annoying banner for netrw
 vim.g.netrw_browse_split = 4 -- open in prior window
 vim.g.netrw_altv = 1         -- change from left splitting to right splitting
-vim.g.netrw_liststyle = 3    -- tree style view in netrw
+-- vim.g.netrw_liststyle = 3    -- tree style view in netrw
 --vim.cmd("let g:netrw_list_hide=netrw_gitignore#Hide()")
 vim.opt.title = true         -- show title
 vim.cmd('set path+=**')      -- search current directory recursively
@@ -61,8 +61,8 @@ vim.cmd([[
 ]])
 
 -- Remap Alt+Shift+F to format using Coc
--- vim.api.nvim_set_keymap('n', '<A-S-F>', [[:call CocActionAsync('format')<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<A-S-F>', [[:LspZeroFormat<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<A-S-F>', [[:call CocActionAsync('format')<CR>]], { noremap = true, silent = true })  
+-- vim.api.nvim_set_keymap('n', '<A-S-F>', [[:LspZeroFormat<CR>]], { noremap = true, silent = true })
 
 
 
@@ -70,7 +70,7 @@ require("bufferchad").setup({
   mapping = "<leader>bb",
   mark_mapping = "<leader>bm",
   order = "LAST_USED_UP",
-  style = 'telescope'
+  style = 'telescope',
 })
 
 -- Set tab size to 4
