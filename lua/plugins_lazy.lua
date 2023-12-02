@@ -16,6 +16,8 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 require("lazy").setup({
 	{ "folke/tokyonight.nvim" },
 	-- { "rose-pine/neovim" },
+	-- { "rebelot/kanagawa.nvim" },
+	-- { "catppuccin/nvim" },
 	-- { "kemiller/vim-ir_black" },
 	-- { "rstacruz/vim-closer",  cond = false, event = "VeryLazy" }, -- disable closer
 	-- {
@@ -33,23 +35,25 @@ require("lazy").setup({
 	-- 	config = function()
 	-- 		vim.cmd [[ALEEnable]]
 	-- 	end
+	{ "AndrewRadev/tagalong.vim",        event = "VeryLazy" },
 	-- },
-	-- { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", event = "VeryLazy" },
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", cond = false },
 	-- { "tjdevries/colorbuddy.nvim",       event = "VeryLazy" },
-	{ "neoclide/coc.nvim",               branch = "release", event = "VeryLazy" },
-	{ "nvim-lua/plenary.nvim",           event = "VeryLazy" },
-	{ "nvim-telescope/telescope.nvim",   event = "VeryLazy" },
+	{ "neoclide/coc.nvim",               branch = "release",  event = "VeryLazy" },
+	{ "nvim-lua/plenary.nvim" },
+	{ "nvim-telescope/telescope.nvim" },
+	{ "mrquantumcodes/bufferchad.nvim",  event = "VeryLazy" },
+	{ "mrquantumcodes/retrospect.nvim",  event = "VeryLazy" },
 	-- { "mbbill/undotree",                 event = "VeryLazy" },
-	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- required
-			"nvim-telescope/telescope.nvim", -- optional
-		},
-		config = true
-	},
+	-- {
+	-- 	"NeogitOrg/neogit",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim", -- required
+	-- 		"nvim-telescope/telescope.nvim", -- optional
+	-- 	},
+	-- 	config = true
+	-- },
 	-- { "tpope/vim-surround",              event = "VeryLazy" },
-	{ "AndrewRadev/tagalong.vim", event = "VeryLazy" },
 	-- {
 	-- 	"nvim-neo-tree/neo-tree.nvim",
 	-- 	branch = "v3.x",
@@ -61,26 +65,24 @@ require("lazy").setup({
 	-- 	event = "VeryLazy",
 	-- },
 	-- { "stevearc/dressing.nvim" },
-	{
-		"akinsho/toggleterm.nvim",
-		config = function()
-			require("toggleterm").setup {
-				size = 20,
-				open_mapping = [[<F7>]],
-				shade_terminals = false,
-				persist_size = true,
-				direction = "float",
-				shell = "pwsh",
-			}
-		end,
-		event = "VeryLazy"
-	},
+	-- {
+	-- 	"akinsho/toggleterm.nvim",
+	-- 	config = function()
+	-- 		require("toggleterm").setup {
+	-- 			size = 20,
+	-- 			open_mapping = [[<F7>]],
+	-- 			shade_terminals = false,
+	-- 			persist_size = true,
+	-- 			direction = "float",
+	-- 			shell = "pwsh",
+	-- 		}
+	-- 	end,
+	-- 	event = "VeryLazy"
+	-- },
 	-- { "cohama/lexima.vim",                   event = "VeryLazy" }, -- auto close brackets, etc.
 	-- { "Yggdroot/indentLine",              event = "VeryLazy" }, -- see indentation
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl",      opts = {},         event = "VeryLazy" },
-	{ "tpope/vim-commentary",                event = "VeryLazy" },
-	{ "mrquantumcodes/bufferchad.nvim" },
-	{ "mrquantumcodes/retrospect.nvim" },
+	{ "tpope/vim-commentary",            event = "VeryLazy" },
+	-- { 'HiPhish/rainbow-delimiters.nvim', event = "VeryLazy" },
 
 	-- { 'williamboman/mason.nvim',             event = "VeryLazy" },
 	-- { 'williamboman/mason-lspconfig.nvim' },
@@ -89,7 +91,7 @@ require("lazy").setup({
 	-- { 'hrsh7th/cmp-nvim-lsp',                event = "VeryLazy" },
 	-- { 'hrsh7th/nvim-cmp',                    event = "VeryLazy" },
 	-- { 'L3MON4D3/LuaSnip',                    event = "VeryLazy" },
-	{ 'github/copilot.vim',                  event = "VeryLazy" },
+	{ 'github/copilot.vim', event = "VeryLazy" },
 	-- {
 	-- 	'karb94/neoscroll.nvim',
 	-- 	event = "VeryLazy",

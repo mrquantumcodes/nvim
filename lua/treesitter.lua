@@ -1,6 +1,6 @@
 -- require 'nvim-treesitter.configs'.setup {
 -- 	-- A list of parser names, or "all" (the five listed parsers should always be installed)
--- 	ensure_installed = { "c", "lua", "cpp", "php", "html", "css", "javascript", "rust" },
+-- 	ensure_installed = { "c", "lua", "cpp", "php", "html", "css", "javascript", "rust", "c_sharp" },
 -- 	sync_install = false,
 -- 	auto_install = true,
 -- 	ignore_install = {},
@@ -9,20 +9,23 @@
 -- 		disable = {"php"},
 -- 		additional_vim_regex_highlighting = false,
 -- 	},
+-- 	indent = {
+-- 		enable = true
+-- 	}
 -- }
 
 
--- vim.keymap.set("n", "<leader>ups", function()
--- 	vim.cmd([[
--- 		:profile start /tmp/nvim-profile.log
--- 		:profile func *
--- 		:profile file *
--- 	]])
--- end, { desc = "Profile Start" })
+vim.keymap.set("n", "<leader>ups", function()
+	vim.cmd([[
+		:profile start /tmp/nvim-profile.log
+		:profile func *
+		:profile file *
+	]])
+end, { desc = "Profile Start" })
 
--- vim.keymap.set("n", "<leader>upe", function()
--- 	vim.cmd([[
--- 		:profile stop
--- 		:e /tmp/nvim-profile.log
--- 	]])
--- end, { desc = "Profile End" })
+vim.keymap.set("n", "<leader>upe", function()
+	vim.cmd([[
+		:profile stop
+		:e /tmp/nvim-profile.log
+	]])
+end, { desc = "Profile End" })

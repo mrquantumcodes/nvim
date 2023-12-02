@@ -26,7 +26,7 @@ vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = 
 vim.api.nvim_set_keymap("n", "<leader>ee", ":25Lexplore<CR>", { noremap = true, silent = true })
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
-vim.api.nvim_set_keymap("n", "<leader>ec", ":Neotree close<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>ec", ":Neotree close<CR>", { noremap = true, silent = true })
 
 -- Focus on NvimTree with leader+ft
 -- vim.api.nvim_set_keymap("n", "<leader>ft", ":Neotree focus<CR>", { noremap = true, silent = true })
@@ -37,13 +37,13 @@ vim.api.nvim_set_keymap("n", "<leader>ec", ":Neotree close<CR>", { noremap = tru
 
 
 vim.api.nvim_set_keymap('i', '<C-s>',
-	'<Esc> :Neotree close<CR> :UndotreeHide<CR> :w<CR>:lua retrospect.  SaveSession()<CR>',
+	'<Esc> :w<CR>:lua retrospect.  SaveSession()<CR>:set autoindent<CR>',
 	{ noremap = true, silent = true })
 
 
 -- Open new file in a new buffer
 vim.api.nvim_set_keymap("n", "<leader>n",
-	":enew<CR> :Neotree close<CR> :UndotreeHide<CR> :lua retrospect.SaveSession()<CR>",
+	":enew<CR> :lua retrospect.SaveSession()<CR>",
 	{ noremap = true, silent = true })
 
 
@@ -54,9 +54,9 @@ vim.keymap.set("n", "<leader>ng", ":Neogit kind=vsplit<CR>")
 
 -- Close current buffer with leader+b+e
 vim.api.nvim_set_keymap("n", "<leader>be",
-	":bd<CR> :Neotree close<CR> :UndotreeHide<CR> :lua retrospect.SaveSession()<CR>", { noremap = true, silent = true })
+	":bd<CR> :lua retrospect.SaveSession()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>d",
-	":bd<CR> :Neotree close<CR> :UndotreeHide<CR> :lua retrospect.SaveSession()<CR>", { noremap = true, silent = true })
+	":bd<CR> :lua retrospect.SaveSession()<CR>", { noremap = true, silent = true })
 
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'kj', '<Esc>')
@@ -71,13 +71,14 @@ vim.keymap.set('i', 'kj', '<Esc>')
 -- Keybindings for Telescope and ripgrep
 vim.api.nvim_set_keymap("n", "<leader>ff", [[<Cmd>Telescope find_files<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>fg", [[<Cmd>Telescope live_grep<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fr", [[<Cmd>Telescope resume<CR>]], { noremap = true, silent = true })
 
 
 
 
 -- remap leader+w to save file
 vim.api.nvim_set_keymap('n', '<Leader>w',
-	':Neotree close<CR> :UndotreeHide<CR> :lua retrospect.SaveSession()<CR>:w<CR>',
+	':lua retrospect.SaveSession()<CR>:w<CR>:set autoindent<CR>',
 	{ noremap = true, silent = true })
 
 -- Create a variable to store the cursor position
