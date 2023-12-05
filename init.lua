@@ -80,18 +80,6 @@ vim.api.nvim_set_keymap('n', '<A-S-F>', [[:call CocActionAsync('format')<CR>]], 
 -- Set up Telescope
 require('telescope').setup({
   defaults = {
-    prompt_prefix = '> ',
-    selection_caret = '> ',
-    layout_strategy = 'horizontal',
-    layout_config = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    sorting_strategy = 'ascending',
     file_ignore_patterns = { -- List of folders/files to exclude
       '**/node_modules/**',
       '**build/**',
@@ -107,8 +95,8 @@ require('telescope').setup({
     },
     mappings = {
       i = {
-        ["<C-u>"] = false, -- Prevent line clearing in insert mode
-        ["<C-d>"] = false, -- Prevent line clearing in insert mode
+        -- ["<C-u>"] = false, -- Prevent line clearing in insert mode
+        -- ["<C-d>"] = false, -- Prevent line clearing in insert mode
       },
     },
   },

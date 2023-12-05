@@ -9,11 +9,11 @@ vim.api.nvim_set_keymap('i', '<C-o>', 'coc#_select_confirm()', { noremap = true,
 
 -- Function to show or refresh Coc suggestion list
 function ShowOrRefreshCocList()
-  if vim.fn.pumvisible() == 1 then
-    return vim.fn['coc#refresh']()
-  else
-    return vim.fn['coc#complete']()
-  end
+	if vim.fn.pumvisible() == 1 then
+		return vim.fn['coc#refresh']()
+	else
+		return vim.fn['coc#complete']()
+	end
 end
 
 -- Map Ctrl+Space to show or refresh Coc suggestion list
@@ -60,12 +60,12 @@ vim.api.nvim_set_keymap("n", "<leader>d",
 
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'kj', '<Esc>')
--- vim.keymap.set('i', '<C-h>', '<Left>')
--- vim.keymap.set('i', '<C-l>', '<Right>')
--- vim.keymap.set('i', '<C-k>', '<Up>')
--- vim.keymap.set('i', '<C-j>', '<Down>')
--- vim.keymap.set('i', '<C-b>', '<Esc>bi')
--- vim.keymap.set('i', '<C-e>', '<Esc>ea')
+vim.keymap.set('i', '<C-h>', '<Left>')
+vim.keymap.set('i', '<C-l>', '<Right>')
+vim.keymap.set('i', '<C-k>', '<Up>')
+vim.keymap.set('i', '<C-j>', '<Down>')
+vim.keymap.set('i', '<C-b>', '<Esc>bi')
+vim.keymap.set('i', '<C-e>', '<Esc>ea')
 
 
 -- Keybindings for Telescope and ripgrep
@@ -85,7 +85,16 @@ vim.api.nvim_set_keymap('n', '<Leader>w',
 vim.g.saved_cursor_position = {}
 
 -- Map Ctrl-y to insert a new line below and return to the exact cursor position
-vim.keymap.set('i', '<C-j>', '<Esc>:let g:saved_cursor_position = getpos(".")<CR>o<Up><Esc>:call setpos(".", g:saved_cursor_position)<CR>a')
+vim.keymap.set('i', '<C-A-j>',
+	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>o<Up><Esc>:call setpos(".", g:saved_cursor_position)<CR>a')
 
 -- Map Ctrl-z to insert a new line above and return to the exact cursor position
-vim.keymap.set('i', '<C-k>', '<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>a')
+vim.keymap.set('i', '<C-A-k>',
+	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>a')
+
+
+
+
+cocInstallString = "coc-html coc-css coc-html-css-support coc-emmet @yaegassy/coc-intelephense coc-tsserver coc-rust-analyzer coc-omnisharp coc-lua coc-json"
+
+vim.cmd("command! CocInstallKar CocInstall " .. cocInstallString)
