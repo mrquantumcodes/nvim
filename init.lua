@@ -111,7 +111,8 @@ require('telescope').setup({
 
 
 
-require("bufferchad/lua/bufferchad").setup({
+-- require("bufferchad/lua/bufferchad").setup({
+require("bufferchad").setup({
   -- mapping = "<leader>bb",
   -- mark_mapping = "<leader>bm",
   -- order = "LAST_USED_UP",
@@ -154,6 +155,7 @@ require('terminal')
 
 require('keymaps')
 require('indentline')
+require('filetree')
 
 -- init.vim or init.lua
 
