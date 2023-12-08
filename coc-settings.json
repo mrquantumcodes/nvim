@@ -23,5 +23,6 @@
         "typescriptreact",
         "javascriptreact",
 		"php"
-    ]
+    ],
+    "clangd.path": "~\\AppData\\Local\\coc\\extensions\\coc-clangd-data\\install\\17.0.3\\clangd_17.0.3\\bin\\clangd.exe"
 }

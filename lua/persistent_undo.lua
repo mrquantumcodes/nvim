@@ -4,7 +4,7 @@ function pUndo()
 	local udirpath = neovim_data_path:gsub("\\", "/") .. "/undodir"
 
 	print(udirpath)
-	
+
 	local session_dir_exists = vim.fn.isdirectory(udirpath)
 	if session_dir_exists == 0 then
 		vim.fn.mkdir(udirpath, "p")
@@ -16,4 +16,9 @@ function pUndo()
 	vim.cmd('set undoreload=1000')
 end
 
-pUndo()
+vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+	-- group = 'persistent_undo',
+	callback = function()
+		pUndo()
+	end,
+})

@@ -13,6 +13,8 @@
 --   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
 --   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
 -- --   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+-- vim.api.nvim_set_keymap('n', '<A-S-F>', [[:LspZeroFormat<CR>]], { noremap = true, silent = true })
+
 -- end)
 
 -- require('mason').setup({})
@@ -58,7 +60,6 @@
 -- 	  },
 -- 	},
 --   }
-  
+
 --   -- Attach the configuration to the 'emmet_ls' language server
 --   require('lspconfig').emmet_language_server.setup(emmet_config)
-  

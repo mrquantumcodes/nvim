@@ -85,7 +85,3 @@ vim.cmd([[
     autocmd BufEnter,BufLeave * lua statusline()
   augroup END
 ]])
--- print("%y")
--- print("" .. ((devicons.get_icon("", vim.bo.filetype) ~= nil) and devicons.get_icon("", vim.bo.filetype) or "") .. "")
-
--- print(f_icon)

@@ -23,7 +23,13 @@ vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
 -- See plugins_lazy
 -- vim.api.nvim_set_keymap("n", "<leader>ee", ":Neotree float<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>ee", ":25Lexplore<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>ee", "", { noremap = true, silent = true, callback=function()
+	filesearch = vim.fn.expand("%:t")
+	-- print(":25Vex<CR>:call search('" .. filesearch .. "')<CR>")
+	vim.cmd(":25Vex")
+	vim.cmd(":call search('" .. filesearch .. "')")
+end })
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
 -- vim.api.nvim_set_keymap("n", "<leader>ec", ":Neotree close<CR>", { noremap = true, silent = true })
@@ -92,9 +98,6 @@ vim.keymap.set('i', '<C-A-j>',
 vim.keymap.set('i', '<C-A-k>',
 	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>a')
 
-
-
-
-cocInstallString = "coc-html coc-css coc-html-css-support coc-emmet @yaegassy/coc-intelephense coc-tsserver coc-rust-analyzer coc-omnisharp coc-lua coc-json"
+cocInstallString = "coc-html coc-css coc-html-css-support coc-emmet @yaegassy/coc-intelephense coc-tsserver coc-rust-analyzer coc-omnisharp coc-lua coc-json coc-clangd"
 
 vim.cmd("command! CocInstallKar CocInstall " .. cocInstallString)

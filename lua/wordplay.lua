@@ -1,3 +1,5 @@
+-- for anyone viewing my dotfiles, this is a part of a plugin I'm developing called wordplay. It's a plugin that helps you write code faster. I'm still working on it, but I'll release it soon. I'll update this comment when I do.
+
 -- autopairing code highly influenced by https://github.com/m4xshen/autoclose.nvim
 
 
@@ -232,3 +234,9 @@ map("x", "J", ":move '>+1<CR>gv=gv")
 
 -- Move selected lines up in visual mode and visual line mode
 map("x", "K", ":move '<-2<CR>gv=gv")
+
+
+
+-- not required right now, see wordplay.lua
+-- map("v", "J", ":m '>+1<CR>gv=gv")                      -- Move current line down
+-- map("v", "K", ":m '>-2<CR>gv=gv")                      -- Move current line up
