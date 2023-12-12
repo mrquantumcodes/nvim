@@ -43,7 +43,7 @@ end })
 
 
 vim.api.nvim_set_keymap('i', '<C-s>',
-	'<Esc> :w<CR>:lua retrospect.  SaveSession()<CR>:set autoindent<CR>',
+	'<Esc> :w<CR>:lua retrospect.SaveSession()<CR>:set autoindent<CR>',
 	{ noremap = true, silent = true })
 
 

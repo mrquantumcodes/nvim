@@ -66,7 +66,7 @@ require("lazy").setup({
 			})
 		end
 	},
-	{ "tpope/vim-commentary", event = "VeryLazy" },
+	-- { "tpope/vim-commentary", event = "VeryLazy" },
 	-- { 'HiPhish/rainbow-delimiters.nvim', event = "VeryLazy" },
 
 	-- { 'williamboman/mason.nvim',             event = "VeryLazy" },
