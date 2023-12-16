@@ -13,41 +13,34 @@ commentStrings = {
 	{ "vim",  "\"",   "\"" },
 }
 
--- get comment string for filetype
-function getCommentString(filetype)
-	for _, commentString in ipairs(commentStrings) do
-		if commentString[1] == filetype then
-			-- return commentString[2], commentString[3]
-			return commentString
-		end
+vim.keymap.set('v', '<leader>c', '', { silent = true, noremap = true, callback = function()
+	comment = vim.api.nvim_eval('&commentstring'):gsub('%%s', ' ')
+	print(comment)
+	-- split comment into start and end by space
+	commentStart = ""
+	commentEnd = ""
+
+	if string.find(comment, " ") then
+		commentStart = string.sub(comment, 0, string.find(comment, " ") - 1)
+		commentEnd = string.sub(comment, string.find(comment, " ") + 1)
+	else
+		commentStart = comment
+		commentEnd = ""
 	end
-	return nil
-end
 
--- get selected text and comment each line separately
-function comment()
-end
+	-- print(commentStart)
+	-- print(commentEnd)
 
-filetype = vim.bo.filetype
-commentString = getCommentString(filetype)
-
--- set autocommand for buffer change
-vim.cmd("autocmd BufEnter * lua commentString = getCommentString(filetype)")
-
--- get selected text and uncomment each line separately
-function uncomment()
-	local filetype = vim.bo.filetype
-	local commentString = getCommentString(filetype)
-	local startLine, endLine = getStartAndEndLine()
-	local lines = getLines(startLine, endLine)
-	local uncommentedLines = uncommentLines(lines, commentString)
-	replaceLines(startLine, endLine, uncommentedLines)
-end
-
--- set keymaps
--- vim.api.nvim_set_keymap('n', '<leader>c', ':lua comment()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<leader>c', "", { noremap = true, silent = true, callback = function ()
-	-- go to each line in selection and comment it
-
-	vim.cmd("<Esc>xi" .. getCommentString(vim.bo.filetype)[2] .. "<Esc>" .. "p" .. getCommentString(vim.bo.filetype)[3] .. "<Esc>")
+	-- loop through all selected lines and comment them
+	for _, line in ipairs(vim.api.nvim_buf_get_lines(0, vim.fn.line("'<") - 1, vim.fn.line("'>"), false)) do
+		-- check if line is already commented
+		-- if string.find(line, commentStart) then
+		-- 	-- remove comment
+		-- 	vim.api.nvim_buf_set_lines(0, vim.fn.line("'<") - 1, vim.fn.line("'>"), false, { string.gsub(line, commentStart, "") })
+		-- else
+		-- 	-- add comment
+		-- 	vim.api.nvim_buf_set_lines(0, vim.fn.line("'<") - 1, vim.fn.line("'>"), false, { commentStart .. line })
+		-- end
+		-- print(line)
+	end
 end })

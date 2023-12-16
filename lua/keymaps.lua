@@ -24,10 +24,11 @@ vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = 
 -- See plugins_lazy
 -- vim.api.nvim_set_keymap("n", "<leader>ee", ":Neotree float<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<leader>ee", "", { noremap = true, silent = true, callback=function()
+vim.api.nvim_set_keymap("n", "<leader>e", "", { noremap = true, silent = true, callback=function()
 	filesearch = vim.fn.expand("%:t")
 	-- print(":25Vex<CR>:call search('" .. filesearch .. "')<CR>")
-	vim.cmd(":25Vex")
+	-- vim.cmd(":25Vex")
+	vim.cmd(":Ex")
 	vim.cmd(":call search('" .. filesearch .. "')")
 end })
 

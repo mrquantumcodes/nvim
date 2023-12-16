@@ -14,12 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
-	-- { "AndrewRadev/tagalong.vim", event = "VeryLazy" },
-	-- },
 	-- { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", cond = false },
-	-- { "tjdevries/colorbuddy.nvim",       event = "VeryLazy" },
-	{ "neoclide/coc.nvim",        branch = "release", event = "VeryLazy" },
-	{ "nvim-lua/plenary.nvim",    event = "BufEnter" },
+	{ "neoclide/coc.nvim",     branch = "release", event = "VeryLazy" },
+	{ "nvim-lua/plenary.nvim", event = "BufEnter" },
 	{
 		"nvim-telescope/telescope.nvim",
 		event = "VeryLazy",
@@ -66,15 +63,8 @@ require("lazy").setup({
 			})
 		end
 	},
-	-- { "tpope/vim-commentary", event = "VeryLazy" },
-	-- { 'HiPhish/rainbow-delimiters.nvim', event = "VeryLazy" },
-
-	-- { 'williamboman/mason.nvim',             event = "VeryLazy" },
-	-- { 'williamboman/mason-lspconfig.nvim' },
-	-- { 'VonHeikemen/lsp-zero.nvim',           branch = 'v3.x',   event = "VeryLazy" },
-	-- { 'neovim/nvim-lspconfig' },
-	-- { 'hrsh7th/cmp-nvim-lsp',                event = "VeryLazy" },
-	-- { 'hrsh7th/nvim-cmp',                    event = "VeryLazy" },
-	-- { 'L3MON4D3/LuaSnip',                    event = "VeryLazy" },
-	{ 'github/copilot.vim',   event = "VeryLazy" },
+	{ 'github/copilot.vim',     event = "VeryLazy" },
+	-- { "williamboman/mason.nvim", config = function ()
+	-- 	require("mason").setup()
+	-- end }
 })
