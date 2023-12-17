@@ -42,7 +42,7 @@ vim.cmd("set cursorline")
 -- vim.cmd("colorscheme torte")
 
 require("statusline")
-require("lspzero")
+-- require("lspzero")
 
 require("persistent_undo")
 
