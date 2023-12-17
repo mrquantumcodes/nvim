@@ -28,6 +28,7 @@ require("lazy").setup({
 						'**build/**',
 						'**to_ignore/**',
 						'**images/**',
+						'vendor/*',
 						'.jpg',
 						'.jpeg',
 						'.png',
@@ -63,8 +64,5 @@ require("lazy").setup({
 			})
 		end
 	},
-	{ 'github/copilot.vim',     event = "VeryLazy" },
-	-- { "williamboman/mason.nvim", config = function ()
-	-- 	require("mason").setup()
-	-- end }
+	{ 'github/copilot.vim', event = "VeryLazy" },
 })

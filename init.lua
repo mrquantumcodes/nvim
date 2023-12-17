@@ -89,5 +89,3 @@ vim.opt.autoindent = true
 
 
 vim.cmd("set guicursor=a:blinkon100")
-
--- require("native_lsp")

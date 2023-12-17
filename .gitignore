@@ -1,2 +1,5 @@
 lua/bufferchad/
 lua/retrospect/
+lua/filetree.lua
+lua/findex.lua
+lua/commentary.lua
