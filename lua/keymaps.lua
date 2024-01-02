@@ -76,9 +76,24 @@ vim.keymap.set('i', '<C-e>', '<Esc>ea')
 
 
 -- Keybindings for Telescope and ripgrep
-vim.api.nvim_set_keymap("n", "<leader>ff", [[<Cmd>Telescope find_files<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fg", [[<Cmd>Telescope live_grep<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fr", [[<Cmd>Telescope resume<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>ff", [[<Cmd>lua require("telescope.builtin").find_files({ previewer = false })<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>fg", [[<Cmd>Telescope live_grep<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>fr", [[<Cmd>Telescope resume<CR>]], { noremap = true, silent = true })
+
+-- Keybindings for CtrlP and vimgrep
+
+-- vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
+
+vim.api.nvim_set_keymap("n", "<leader>f", [[<Cmd>CtrlP<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>g", "", { noremap = true, silent = true, callback=function()
+	search = vim.fn.input("Enter search term: ")
+	filetype = vim.fn.input("Enter filetype: ")
+	vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
+	-- vim.cmd(":grep " .. search)
+
+	-- open quickfix window
+	vim.cmd(":copen")
+end })
 
 
 

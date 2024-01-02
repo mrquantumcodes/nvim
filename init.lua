@@ -2,6 +2,7 @@ vim.loader.enable()
 
 require("plugins_lazy")
 vim.cmd("colorscheme sorbet")
+-- vim.cmd("colorscheme tokyonight-night")
 
 
 -- Set termguicolors to enable highlight groups
@@ -32,7 +33,7 @@ vim.cmd('filetype plugin on') -- set filetype
 vim.cmd('set wildmenu')       -- enable wildmenu
 
 -- Load plugins from plugins.lua
-require("treesitter")
+-- require("treesitter")
 require("wordplay")
 
 
@@ -89,3 +90,23 @@ vim.opt.autoindent = true
 
 
 vim.cmd("set guicursor=a:blinkon100")
+
+vim.cmd("hi NormalFloat guibg=none")
+
+-- local root_files = {'composer.json'}
+-- local paths = vim.fs.find(root_files, {stop = vim.env.HOME})
+
+-- vim.lsp.start({
+--   cmd = {'C:/Users/Admin/AppData/Local/nvim-data/mason/bin/intelephense.cmd', '--stdio'},
+--   filetypes = { 'php' },
+--   root_dir = vim.fs.dirname(paths[1]),
+--   settings = {
+--     intelephense = {
+--       files = {
+--         maxSize = 1000000,
+--       },
+--     }
+--   }
+-- })
+
+

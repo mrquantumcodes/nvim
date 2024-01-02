@@ -14,43 +14,55 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
-	-- { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", cond = false },
-	{ "neoclide/coc.nvim",     branch = "release", event = "VeryLazy" },
-	{ "nvim-lua/plenary.nvim", event = "BufEnter" },
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter",
+	-- 	build = ":TSUpdate",
+	-- 	cond = false
+	-- },
+	-- {'folke/tokyonight.nvim'},
 	{
-		"nvim-telescope/telescope.nvim",
+		"neoclide/coc.nvim",
+		branch = "release",
 		event = "VeryLazy",
-		config = function()
-			require('telescope').setup({
-				defaults = {
-					file_ignore_patterns = { -- List of folders/files to exclude
-						'**/node_modules/**',
-						'**build/**',
-						'**to_ignore/**',
-						'**images/**',
-						'vendor/*',
-						'.jpg',
-						'.jpeg',
-						'.png',
-						'.gif',
-						'.avif',
-						'.tiff',
-						'.webp',
-					}
-				},
-			})
-		end
+		-- cond = false,
 	},
+	{ "ctrlpvim/ctrlp.vim" },
+	-- { "nvim-lua/plenary.nvim", event = "BufEnter" },
+	-- {
+	-- 	"nvim-telescope/telescope.nvim",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		require('telescope').setup({
+	-- 			defaults = {
+	-- 				file_ignore_patterns = { -- List of folders/files to exclude
+	-- 					'**/node_modules/**',
+	-- 					'**build/**',
+	-- 					'**to_ignore/**',
+	-- 					'**images/**',
+	-- 					'vendor/*',
+	-- 					'.jpg',
+	-- 					'.jpeg',
+	-- 					'.png',
+	-- 					'.gif',
+	-- 					'.avif',
+	-- 					'.tiff',
+	-- 					'.webp',
+	-- 				}
+	-- 			},
+	-- 		})
+	-- 	end
+	-- },
 	{
 		"mrquantumcodes/bufferchad.nvim",
 		event = "VeryLazy",
 		config = function()
 			-- require("bufferchad/lua/bufferchad").setup({
 			require("bufferchad").setup({
-				-- mapping = "<leader>bb",
-				-- mark_mapping = "<leader>bm",
+				mapping = "q",
+				mark_mapping = "<leader>m",
 				-- order = "LAST_USED_UP",
-				style = "telescope",
+				close_mapping = "q",
+				style = "default",
 			})
 		end
 	},
