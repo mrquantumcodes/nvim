@@ -2,6 +2,13 @@
 	"coc.source.filetypes": {
 		"javascript": "eslint"
 	},
+	"suggest.floatConfig": {
+		"border": true,
+		"rounded": true,
+		"focusable": true,
+		"title": "LSP"
+	},
+	"dialog.rounded": true,
 	"emmet.includeLanguages": {
 		"vue-html": "html",
 		"javascript": "javascriptreact",
@@ -29,6 +36,11 @@
 		"/style.css",
 		"style.css"
 	],
-    "clangd.path": "~\\AppData\\Local\\coc\\extensions\\coc-clangd-data\\install\\17.0.3\\clangd_17.0.3\\bin\\clangd.exe",
-	"snippets.ultisnips.pythonPrompt": false
+	"clangd.path": "~\\AppData\\Local\\coc\\extensions\\coc-clangd-data\\install\\17.0.3\\clangd_17.0.3\\bin\\clangd.exe",
+	"snippets.ultisnips.pythonPrompt": false,
+	"snippets.extends": {
+		"php": [
+			"jquery"
+		]
+	}
 }

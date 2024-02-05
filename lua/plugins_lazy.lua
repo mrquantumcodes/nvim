@@ -23,10 +23,33 @@ require("lazy").setup({
 	{
 		"neoclide/coc.nvim",
 		branch = "release",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		lazy = true,
+		ft = {"php", "html", "css", "js"}
+		-- keys = {
+		-- 	{ "<leader>coc", "<cmd>echo 'COC Enabled'<cr>", desc = "" },
+		-- },
+		
 		-- cond = false,
 	},
-	{ "ctrlpvim/ctrlp.vim" },
+	{
+		"ctrlpvim/ctrlp.vim",
+		keys = {
+			{ "<leader>f", "<cmd>CtrlP<cr>", desc = "" },
+		},
+		config = function ()
+			-- vim.cmd([[
+			-- 	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']
+			-- ]])
+			-- vim.cmd([[
+				-- let g:ctrlp_user_command = ['ag', '%s -l --nocolor -g ""']
+			-- ]])
+			-- vim.cmd("let g:ctrlp_user_command = 'rg --files %s --color=never --glob \"\"'")
+			-- vim.cmd("let g:ctrlp_user_command = 'fd --type f --color=never \"\" %s'")
+			vim.cmd("let g:ctrlp_user_command = 'fd --type f --color=never \"\" %s'")
+			vim.cmd("let g:ctrlp_use_caching = 1")
+		end
+	},
 	-- { "nvim-lua/plenary.nvim", event = "BufEnter" },
 	-- {
 	-- 	"nvim-telescope/telescope.nvim",
@@ -66,6 +89,7 @@ require("lazy").setup({
 			})
 		end
 	},
+	-- { "junegunn/fzf", build = "fzf:install()" },
 	{
 		"mrquantumcodes/retrospect.nvim",
 		event = "VeryLazy",
@@ -76,5 +100,11 @@ require("lazy").setup({
 			})
 		end
 	},
-	{ 'github/copilot.vim', event = "VeryLazy" },
+	{
+		'github/copilot.vim',
+		-- event = "VeryLazy",
+		keys = {
+			{ "<leader>cop", "<cmd>echo 'Copilot Enabled'<cr>", desc = "Copilot" },
+		},
+	},
 })

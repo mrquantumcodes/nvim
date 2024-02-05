@@ -5,7 +5,7 @@ vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr 
 vim.api.nvim_set_keymap('i', '<C-k>', 'coc#pum#next(1)', { noremap = true, expr = true })
 
 -- Map Ctrl+l for accept suggestion in Coc.nvim
-vim.api.nvim_set_keymap('i', '<C-o>', 'coc#_select_confirm()', { noremap = true, expr = true })
+vim.api.nvim_set_keymap('i', '<C-o>', "coc#pum#visible() ? coc#_select_confirm() : '<C-o>'", { noremap = true, expr = true })
 
 -- Function to show or refresh Coc suggestion list
 function ShowOrRefreshCocList()
@@ -24,13 +24,17 @@ vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = 
 -- See plugins_lazy
 -- vim.api.nvim_set_keymap("n", "<leader>ee", ":Neotree float<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<leader>e", "", { noremap = true, silent = true, callback=function()
-	filesearch = vim.fn.expand("%:t")
-	-- print(":25Vex<CR>:call search('" .. filesearch .. "')<CR>")
-	-- vim.cmd(":25Vex")
-	vim.cmd(":Ex")
-	vim.cmd(":call search('" .. filesearch .. "')")
-end })
+vim.api.nvim_set_keymap("n", "<leader>e", "", {
+	noremap = true,
+	silent = true,
+	callback = function()
+		filesearch = vim.fn.expand("%:t")
+		-- print(":25Vex<CR>:call search('" .. filesearch .. "')<CR>")
+		-- vim.cmd(":25Vex")
+		vim.cmd(":Ex")
+		vim.cmd(":call search('" .. filesearch .. "')")
+	end
+})
 
 -- Toggle NvimTree with <leader>e and switch focus to it if open, or switch back to the previous buffer if closed
 -- vim.api.nvim_set_keymap("n", "<leader>ec", ":Neotree close<CR>", { noremap = true, silent = true })
@@ -74,6 +78,7 @@ vim.keymap.set('i', '<C-j>', '<Down>')
 vim.keymap.set('i', '<C-b>', '<Esc>bi')
 vim.keymap.set('i', '<C-e>', '<Esc>ea')
 
+vim.keymap.set('n', 'Q', 'q')
 
 -- Keybindings for Telescope and ripgrep
 -- vim.api.nvim_set_keymap("n", "<leader>ff", [[<Cmd>lua require("telescope.builtin").find_files({ previewer = false })<CR>]], { noremap = true, silent = true })
@@ -84,16 +89,29 @@ vim.keymap.set('i', '<C-e>', '<Esc>ea')
 
 -- vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
 
-vim.api.nvim_set_keymap("n", "<leader>f", [[<Cmd>CtrlP<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>g", "", { noremap = true, silent = true, callback=function()
-	search = vim.fn.input("Enter search term: ")
-	filetype = vim.fn.input("Enter filetype: ")
-	vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
-	-- vim.cmd(":grep " .. search)
+-- vim.api.nvim_set_keymap("n", "<leader>f", [[<Cmd>CtrlP<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>g", "", {
+	noremap = true,
+	silent = true,
+	callback = function()
+		vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
+		vim.cmd([[set grepformat=%f:%l:%c:%m]])
 
-	-- open quickfix window
-	vim.cmd(":copen")
-end })
+		search = vim.fn.input("Enter search term: ")
+
+		-- filetype = vim.fn.input("Enter filetype: ")
+
+		spdir = vim.fn.input("Enter specific directory: ")
+		vim.cmd(':silent grep! "' .. search .. '" ' .. spdir .. ' | cope')
+
+		print("Search complete")
+
+		-- vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
+
+		-- open quickfix window
+		-- vim.cmd(":copen")
+	end
+})
 
 
 
@@ -104,16 +122,49 @@ vim.api.nvim_set_keymap('n', '<Leader>w',
 	{ noremap = true, silent = true })
 
 -- Create a variable to store the cursor position
-vim.g.saved_cursor_position = {}
+-- vim.g.saved_cursor_position = {}
 
--- Map Ctrl-y to insert a new line below and return to the exact cursor position
-vim.keymap.set('i', '<C-A-j>',
+-- Map Ctrl-j to insert a new line below and return to the exact cursor position
+vim.keymap.set('i', '<A-j>',
 	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>o<Up><Esc>:call setpos(".", g:saved_cursor_position)<CR>a')
 
--- Map Ctrl-z to insert a new line above and return to the exact cursor position
-vim.keymap.set('i', '<C-A-k>',
+-- Map Ctrl-k to insert a new line above and return to the exact cursor position
+vim.keymap.set('i', '<A-k>',
 	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>a')
 
-cocInstallString = "coc-html coc-css coc-html-css-support coc-emmet @yaegassy/coc-intelephense coc-tsserver coc-rust-analyzer coc-omnisharp coc-lua coc-json coc-clangd"
+
+-- Map Ctrl-j to insert a new line below and return to the exact cursor position
+vim.keymap.set('n', '<A-j>',
+	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>o<Up><Esc>:call setpos(".", g:saved_cursor_position)<CR>')
+
+-- Map Ctrl-k to insert a new line above and return to the exact cursor position
+vim.keymap.set('n', '<A-k>',
+	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>')
+
+
+-- Map Ctrl-j to insert a new line below and return to the exact cursor position
+vim.keymap.set('v', '<A-j>',
+	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>o<Up><Esc>:call setpos(".", g:saved_cursor_position)<CR>gv')
+
+-- Map Ctrl-k to insert a new line above and return to the exact cursor position
+vim.keymap.set('v', '<A-k>',
+	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>gv')
+
+
+
+-- COC
+
+cocInstallString =
+"coc-html coc-css coc-html-css-support coc-emmet @yaegassy/coc-intelephense coc-tsserver coc-rust-analyzer coc-omnisharp coc-lua coc-json coc-clangd coc-pyright coc-snippets"
 
 vim.cmd("command! CocInstallKar CocInstall " .. cocInstallString)
+
+vim.keymap.set("n", "<leader>coc", ":Lazy load coc.nvim<CR>")
+
+vim.keymap.set("n", "gd", ":call CocActionAsync('jumpDefinition')<CR>")
+vim.keymap.set("n", "K", ":call CocActionAsync('definitionHover')<CR>")
+
+vim.keymap.set("n", "<C-u>", "coc#float#has_scroll() ? coc#float#scroll(1) : '<C-u>'", { silent = true, expr = true })
+vim.keymap.set("n", "<C-i>", "coc#float#has_scroll() ? coc#float#scroll(0) : '<C-i>'", { silent = true, expr = true })
+vim.keymap.set("i", "<C-u>", "coc#float#has_scroll() ? coc#float#scroll(1) : ''", { silent = true, expr = true })
+vim.keymap.set("i", "<C-i>", "coc#float#has_scroll() ? coc#float#scroll(0) : ''", { silent = true, expr = true })
