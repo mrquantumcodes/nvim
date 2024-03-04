@@ -1,14 +1,31 @@
 -- vim.cmd("colorscheme sorbet")
 vim.cmd("colorscheme habamax")
 
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
-vim.cmd "highlight StatusType guibg=#b16286 guifg=#1d2021"
-vim.cmd "highlight StatusFile guibg=#fabd2f guifg=#1d2021"
-vim.cmd "highlight StatusModified guibg=#1d2021 guifg=#d3869b"
-vim.cmd "highlight StatusBuffer guibg=#98971a guifg=#1d2021"
-vim.cmd "highlight StatusLocation guibg=#458588 guifg=#1d2021"
-vim.cmd "highlight StatusPercent guibg=#1d2021 guifg=#ebdbb2"
-vim.cmd "highlight StatusNorm guibg=none guifg=white"
+vim.api.nvim_set_hl(0, "StatusType", { bg="#b16286", fg="#1d2021" });
+vim.api.nvim_set_hl(0, "StatusFile", { bg="#fabd2f", fg="#1d2021" });
+vim.api.nvim_set_hl(0, "StatusModified", { bg="#1d2021", fg="#d3869b" });
+vim.api.nvim_set_hl(0, "StatusBuffer", { bg="#98971a", fg="#1d2021" });
+vim.api.nvim_set_hl(0, "StatusLocation", { bg="#458588", fg="#1d2021" });
+vim.api.nvim_set_hl(0, "StatusPercent", { bg="#1d2021", fg="#ebdbb2" });
+vim.api.nvim_set_hl(0, "StatusNorm", { bg="none", fg="white" });
+
+vim.api.nvim_set_hl(0, "NormalFloat", { bg="none" });
+vim.api.nvim_set_hl(0, "FloatBorder", { bg="none" });
+
+-- vim.cmd("hi NormalFloat guibg=none")
+-- vim.cmd("hi FloatBorder guibg=#ccc")
+-- vim.cmd "highlight StatusType guibg=#b16286 guifg=#1d2021"
+-- vim.cmd "highlight StatusFile guibg=#fabd2f guifg=#1d2021"
+-- vim.cmd "highlight StatusModified guibg=#1d2021 guifg=#d3869b"
+-- vim.cmd "highlight StatusBuffer guibg=#98971a guifg=#1d2021"
+-- vim.cmd "highlight StatusLocation guibg=#458588 guifg=#1d2021"
+-- vim.cmd "highlight StatusPercent guibg=#1d2021 guifg=#ebdbb2"
+-- vim.cmd "highlight StatusNorm guibg=none guifg=white"
+
+vim.cmd("hi NormalFloat guibg=none")
+vim.cmd("hi FloatBorder guibg=#ccc")
 
 
 -- devicons = require 'nvim-web-devicons'

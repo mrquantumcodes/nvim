@@ -25,31 +25,62 @@ require("lazy").setup({
 		branch = "release",
 		-- event = "VeryLazy",
 		lazy = true,
-		ft = {"php", "html", "css", "js"}
+		ft = { "php", "html", "css", "js", "json", "yaml", "lua", "vim", "markdown", "c", "cpp", "rust", "python", "ruby", "go", "typescript", "javascript", "scss", "sass", "less", "stylus", "graphql", },
 		-- keys = {
 		-- 	{ "<leader>coc", "<cmd>echo 'COC Enabled'<cr>", desc = "" },
 		-- },
-		
+
 		-- cond = false,
 	},
-	{
-		"ctrlpvim/ctrlp.vim",
-		keys = {
-			{ "<leader>f", "<cmd>CtrlP<cr>", desc = "" },
-		},
-		config = function ()
-			-- vim.cmd([[
-			-- 	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']
-			-- ]])
-			-- vim.cmd([[
-				-- let g:ctrlp_user_command = ['ag', '%s -l --nocolor -g ""']
-			-- ]])
-			-- vim.cmd("let g:ctrlp_user_command = 'rg --files %s --color=never --glob \"\"'")
-			-- vim.cmd("let g:ctrlp_user_command = 'fd --type f --color=never \"\" %s'")
-			vim.cmd("let g:ctrlp_user_command = 'fd --type f --color=never \"\" %s'")
-			vim.cmd("let g:ctrlp_use_caching = 1")
-		end
-	},
+	-- {
+	-- 	"sheerun/vim-polyglot",
+	-- 	lazy = true,
+	-- 	keys = {
+	-- 		{ "<leader>pl", "<cmd>echo 'Polyglot Enabled'<CR><cmd>syntax on<CR>", desc = "" },
+	-- 	},
+	-- 	-- cond = false
+	-- },
+	-- { "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
+	{'Yggdroot/LeaderF', event = "VeryLazy"},
+	-- {
+	-- 	"ibhagwan/fzf-lua",
+	-- 	-- optional for icon support
+	-- 	-- dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- 	-- event = "VeryLazy",
+	-- 	lazy = true,
+	-- 	ft = { "php", "html", "css", "js", "json", "yaml", "lua", "vim", "markdown", "c", "cpp", "rust", "python", "ruby", "go", "typescript", "javascript", "scss", "sass", "less", "stylus", "graphql", },
+	-- 	config = function()
+	-- 		-- calling `setup` is optional for customization
+	-- 		-- require("fzf-lua").setup({
+	-- 		-- 	cmd = "rg --files",
+	-- 		-- 	-- winopts = { preview = { hidden = "hidden" } },
+	-- 		-- 	-- fzf_opts = {['--layout'] = 'reverse-list'},
+	-- 		-- })
+	-- 		require("fzf-lua").setup({
+	-- 		})
+	-- 	end
+	-- },
+	-- {
+	-- 	"ctrlpvim/ctrlp.vim",
+	-- 	keys = {
+	-- 		{ "<leader>f", "<cmd>CtrlP<cr>", desc = "" },
+	-- 	},
+	-- 	config = function()
+	-- 		vim.cmd([[
+	-- 			let g:ctrlp_by_filename = 1
+	-- 		]])
+	-- 		-- vim.cmd([[
+	-- 		-- 	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']
+	-- 		-- ]])
+	-- 		-- vim.cmd([[
+	-- 		-- let g:ctrlp_user_command = ['ag', '%s -l --nocolor -g ""']
+	-- 		-- ]])
+	-- 		-- vim.cmd("let g:ctrlp_user_command = 'rg --files %s --color=never --glob \"\"'")
+	-- 		-- vim.cmd("let g:ctrlp_user_command = 'fd --type f --color=never \"\" %s'")
+	-- 		vim.cmd("let g:ctrlp_user_command = 'fd --type f --color=never \"\" %s'")
+	-- 		vim.cmd("let g:ctrlp_use_caching = 1")
+	-- 	end
+	-- },
 	-- { "nvim-lua/plenary.nvim", event = "BufEnter" },
 	-- {
 	-- 	"nvim-telescope/telescope.nvim",

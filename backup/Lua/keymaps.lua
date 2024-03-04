@@ -5,7 +5,8 @@ vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr 
 vim.api.nvim_set_keymap('i', '<C-k>', 'coc#pum#next(1)', { noremap = true, expr = true })
 
 -- Map Ctrl+l for accept suggestion in Coc.nvim
-vim.api.nvim_set_keymap('i', '<C-o>', "coc#pum#visible() ? coc#_select_confirm() : '<C-o>'", { noremap = true, expr = true })
+vim.api.nvim_set_keymap('i', '<C-o>', "coc#pum#visible() ? coc#_select_confirm() : '<C-o>'",
+	{ noremap = true, expr = true })
 
 -- Function to show or refresh Coc suggestion list
 function ShowOrRefreshCocList()
@@ -89,29 +90,53 @@ vim.keymap.set('n', 'Q', 'q')
 
 -- vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
 
+
+-- fzf = require('fzf-lua')
+
 -- vim.api.nvim_set_keymap("n", "<leader>f", [[<Cmd>CtrlP<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>g", "", {
-	noremap = true,
-	silent = true,
-	callback = function()
-		vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
-		vim.cmd([[set grepformat=%f:%l:%c:%m]])
+-- vim.api.nvim_set_keymap("n", "<leader>f", [[<Cmd>FzfLua files<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-f>", [[<Cmd>FzfLua files<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>g", [[<Cmd>FzfLua live_grep_native<CR>]], { noremap = true, silent = true })
 
-		search = vim.fn.input("Enter search term: ")
+vim.keymap.set('n', '<leader>f', ':Leaderf file<CR>')
+vim.keymap.set('n', '<leader>g', ':Leaderf rg<CR>')
+vim.keymap.set('n', '[', ':Leaderf line<CR>')
 
-		-- filetype = vim.fn.input("Enter filetype: ")
 
-		spdir = vim.fn.input("Enter specific directory: ")
-		vim.cmd(':silent grep! "' .. search .. '" ' .. spdir .. ' | cope')
+-- vim.keymap.set({ "n", "v", "i" }, "<C-x><C-f>",
+--   function() require("fzf-lua").complete_path() end,
+--   { silent = true, desc = "Fuzzy complete path" })
 
-		print("Search complete")
+vim.keymap.set({ "i" }, "<C-x><C-f>",
+	function()
+		require("fzf-lua").complete_file({
+			cmd = "rg --files",
+			winopts = { preview = { hidden = "nohidden" } }
+		})
+	end, { silent = true, desc = "Fuzzy complete file" })
 
-		-- vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
+-- vim.api.nvim_set_keymap("n", "<leader>g", "", {
+-- 	noremap = true,
+-- 	silent = true,
+-- 	callback = function()
+-- 		vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
+-- 		vim.cmd([[set grepformat=%f:%l:%c:%m]])
 
-		-- open quickfix window
-		-- vim.cmd(":copen")
-	end
-})
+-- 		search = vim.fn.input("Enter search term: ")
+
+-- 		-- filetype = vim.fn.input("Enter filetype: ")
+
+-- 		spdir = vim.fn.input("Enter specific directory: ")
+-- 		vim.cmd(':silent grep! "' .. search .. '" ' .. spdir .. ' | cope')
+
+-- 		print("Search complete")
+
+-- 		-- vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
+
+-- 		-- open quickfix window
+-- 		-- vim.cmd(":copen")
+-- 	end
+-- })
 
 
 
