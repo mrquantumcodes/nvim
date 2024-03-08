@@ -24,7 +24,8 @@ require("lazy").setup({
 
 		-- cond = false,
 	},
-	{'Yggdroot/LeaderF', event = "VeryLazy"},	
+	{'Yggdroot/LeaderF', event = "VeryLazy"},
+	-- { "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
 	{
 		"mrquantumcodes/bufferchad.nvim",
 		event = "VeryLazy",
@@ -52,8 +53,11 @@ require("lazy").setup({
 	{
 		'github/copilot.vim',
 		-- event = "VeryLazy",
-		keys = {
-			{ "<leader>cop", "<cmd>echo 'Copilot Enabled'<cr>", desc = "Copilot" },
-		},
+		-- keys = {
+		-- 	{ "<leader>cop", "<cmd>echo 'Copilot Enabled'<cr>", desc = "Copilot" },
+		-- },
+		ft = {
+			"php", "html", "css", "js", "json", "yaml", "lua", "vim", "markdown", "c", "cpp", "rust", "python", "ruby", "go", "typescript", "javascript", "scss", "sass", "less", "stylus", "graphql"
+		}
 	},
 })

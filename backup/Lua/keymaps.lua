@@ -193,3 +193,6 @@ vim.keymap.set("n", "<C-u>", "coc#float#has_scroll() ? coc#float#scroll(1) : '<C
 vim.keymap.set("n", "<C-i>", "coc#float#has_scroll() ? coc#float#scroll(0) : '<C-i>'", { silent = true, expr = true })
 vim.keymap.set("i", "<C-u>", "coc#float#has_scroll() ? coc#float#scroll(1) : ''", { silent = true, expr = true })
 vim.keymap.set("i", "<C-i>", "coc#float#has_scroll() ? coc#float#scroll(0) : ''", { silent = true, expr = true })
+
+
+vim.keymap.set("i", "<Tab>", "coc#pum#visible() ? '<Tab>' : '<Tab>'", { expr = true })

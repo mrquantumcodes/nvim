@@ -112,7 +112,7 @@ function handler(key, info, mode)
 
 	local pair = mode == "insert" and insert_get_pair() or command_get_pair()
 
-	if (key == "<BS>" or key == "<C-H>" or key == "<C-W>") and is_pair(pair) then
+	if (key == "<BS>" or key == "<C-W>") and is_pair(pair) then
 		return "<BS><Del>"
 	elseif
 		mode == "insert"

@@ -15,13 +15,8 @@ vim.keymap.set('i', '<A-j>',
 vim.keymap.set('i', '<A-k>',
 	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>a')
 
--- Map Ctrl+j for previous suggestion in Coc.nvim
-vim.api.nvim_set_keymap('i', '<C-j>', 'coc#pum#prev(1)', { noremap = true, expr = true })
 
--- Map Ctrl+k for next suggestion in Coc.nvim
-vim.api.nvim_set_keymap('i', '<C-k>', 'coc#pum#next(1)', { noremap = true, expr = true })
-
--- Map Ctrl+l for accept suggestion in Coc.nvim
+-- Map Ctrl+o for accept suggestion in Coc.nvim
 vim.api.nvim_set_keymap('i', '<C-o>', "coc#pum#visible() ? coc#_select_confirm() : '<C-o>'",
 	{ noremap = true, expr = true })
 
@@ -65,23 +60,37 @@ vim.api.nvim_set_keymap("n", "<leader>n",
 	":enew<CR> :lua retrospect.SaveSession()<CR>",
 	{ noremap = true, silent = true })
 
-
-vim.keymap.set('i', 'jk', '<Esc>')
-vim.keymap.set('i', 'kj', '<Esc>')
-vim.keymap.set('i', '<C-h>', '<Left>')
-vim.keymap.set('i', '<C-l>', '<Right>')
-vim.keymap.set('i', '<C-k>', '<Up>')
-vim.keymap.set('i', '<C-j>', '<Down>')
-vim.keymap.set('i', '<C-b>', '<Esc>bi')
-vim.keymap.set('i', '<C-e>', '<Esc>ea')
-
-
 vim.keymap.set('n', 'Q', 'q')
 
 
 vim.keymap.set('n', '<leader>f', ':Leaderf file<CR>')
-vim.keymap.set('n', '<leader>g', ':Leaderf rg<CR>')
+-- vim.keymap.set('n', '<leader>g', ':Leaderf rg<CR>')
 vim.keymap.set('n', '=', ':Leaderf line<CR>')
+
+vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
+
+vim.api.nvim_set_keymap("n", "<leader>g", "", {
+	noremap = true,
+	silent = true,
+	callback = function()
+		vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
+		vim.cmd([[set grepformat=%f:%l:%c:%m]])
+
+		search = vim.fn.input("Enter search term: ")
+
+		-- filetype = vim.fn.input("Enter filetype: ")
+
+		spdir = vim.fn.input("Enter specific directory: ")
+		vim.cmd(':silent grep! "' .. search .. '" ' .. spdir .. ' | cope')
+
+		print("Search complete")
+
+		-- vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
+
+		-- open quickfix window
+		-- vim.cmd(":copen")
+	end
+})
 
 
 cocInstallString =
@@ -98,3 +107,17 @@ vim.keymap.set("i", "<C-i>", "coc#float#has_scroll() ? coc#float#scroll(0) : ''"
 
 -- Remap Alt+Shift+F to format using Coc
 vim.api.nvim_set_keymap('n', '<A-S-F>', [[:call CocActionAsync('format')<CR>]], { noremap = true, silent = true })
+
+
+
+vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('i', 'kj', '<Esc>')
+vim.keymap.set('i', '<C-h>', '<Left>')
+vim.keymap.set('i', '<C-l>', '<Right>')
+vim.keymap.set('i', '<C-k>', '<Up>')
+vim.keymap.set('i', '<C-j>', '<Down>')
+vim.keymap.set('i', '<C-b>', '<Esc>bi')
+vim.keymap.set('i', '<C-e>', '<Esc>ea')
+
+
+vim.keymap.set("i", "<Tab>", "coc#pum#visible() ? '<Tab>' : '<Tab>'", { expr = true })
