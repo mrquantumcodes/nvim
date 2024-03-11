@@ -1,8 +1,8 @@
 {
-  "LeaderF": { "branch": "master", "commit": "fd05ba47004f36f78325fb2a205cf4f4849e9605" },
   "bufferchad.nvim": { "branch": "main", "commit": "2ba42c2e710d84f7e00a2c23276f3e7db35ae215" },
   "coc.nvim": { "branch": "release", "commit": "0ce9a96b95e5d88181b0bed26f40922d1bf65b90" },
-  "copilot.vim": { "branch": "release", "commit": "57a0115908895f465eb3476f03a0aaa7096e8fe1" },
-  "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
+  "copilot.vim": { "branch": "release", "commit": "3b39e786d865df9ba77fe61624d6ee646528a809" },
+  "lazy.nvim": { "branch": "main", "commit": "83493db50a434a4c5c648faf41e2ead80f96e478" },
+  "mini.pick": { "branch": "main", "commit": "3276a2d9e8b28e0d3ce89ee4c547cea3745961ba" },
   "retrospect.nvim": { "branch": "main", "commit": "1efdc6639c5ec556542c4d436e8e3c3ec13243f7" }
 }

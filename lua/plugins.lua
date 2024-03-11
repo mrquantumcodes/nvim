@@ -24,7 +24,8 @@ require("lazy").setup({
 
 		-- cond = false,
 	},
-	{'Yggdroot/LeaderF', event = "VeryLazy"},
+	{ 'echasnovski/mini.pick', version = false, config = function() require("mini.pick").setup({}) end },
+-- {'Yggdroot/LeaderF', event = "VeryLazy"},
 	-- { "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
 	{
 		"mrquantumcodes/bufferchad.nvim",

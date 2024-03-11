@@ -63,34 +63,37 @@ vim.api.nvim_set_keymap("n", "<leader>n",
 vim.keymap.set('n', 'Q', 'q')
 
 
-vim.keymap.set('n', '<leader>f', ':Leaderf file<CR>')
--- vim.keymap.set('n', '<leader>g', ':Leaderf rg<CR>')
-vim.keymap.set('n', '=', ':Leaderf line<CR>')
+-- vim.keymap.set('n', '<leader>f', ':Leaderf file<CR>')
+-- -- vim.keymap.set('n', '<leader>g', ':Leaderf rg<CR>')
+-- vim.keymap.set('n', '=', ':Leaderf line<CR>')
+vim.keymap.set("n", "<leader>f", ":Pick files tool='git'<CR>")
+vim.keymap.set("n", "<leader>r", ":Pick files tool='rg'<CR>")
+vim.keymap.set("n", "<leader>g", ":Pick grep<CR>")
 
-vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
-
-vim.api.nvim_set_keymap("n", "<leader>g", "", {
-	noremap = true,
-	silent = true,
-	callback = function()
-		vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
-		vim.cmd([[set grepformat=%f:%l:%c:%m]])
-
-		search = vim.fn.input("Enter search term: ")
-
-		-- filetype = vim.fn.input("Enter filetype: ")
-
-		spdir = vim.fn.input("Enter specific directory: ")
-		vim.cmd(':silent grep! "' .. search .. '" ' .. spdir .. ' | cope')
-
-		print("Search complete")
-
-		-- vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
-
-		-- open quickfix window
-		-- vim.cmd(":copen")
-	end
-})
+-- vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
+-- 
+-- vim.api.nvim_set_keymap("n", "<leader>g", "", {
+-- 	noremap = true,
+-- 	silent = true,
+-- 	callback = function()
+-- 		vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
+-- 		vim.cmd([[set grepformat=%f:%l:%c:%m]])
+-- 
+-- 		search = vim.fn.input("Enter search term: ")
+-- 
+-- 		-- filetype = vim.fn.input("Enter filetype: ")
+-- 
+-- 		spdir = vim.fn.input("Enter specific directory: ")
+-- 		vim.cmd(':silent grep! "' .. search .. '" ' .. spdir .. ' | cope')
+-- 
+-- 		print("Search complete")
+-- 
+-- 		-- vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
+-- 
+-- 		-- open quickfix window
+-- 		-- vim.cmd(":copen")
+-- 	end
+-- })
 
 
 cocInstallString =
