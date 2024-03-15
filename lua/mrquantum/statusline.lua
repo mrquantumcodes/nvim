@@ -1,7 +1,7 @@
 -- vim.cmd("colorscheme sorbet")
-vim.cmd("colorscheme habamax")
+vim.cmd("colorscheme wildcharm")
 
--- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
 vim.api.nvim_set_hl(0, "StatusType", { bg="#b16286", fg="#1d2021" });
 vim.api.nvim_set_hl(0, "StatusFile", { bg="#fabd2f", fg="#1d2021" });

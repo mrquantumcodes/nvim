@@ -93,7 +93,7 @@ The order parameter can have the following arguments:
 
 Now, BufferChad allows you to mark files like the `Harpoon` plugin. This let's you quickly switch between specific files instead of going through a list of all the buffers you have used till now.
 
-Use the `mset` keymap to mark the current file in the last position of the register, or `<1-9>set` to mark the current file the location of your choice. Then, to navigate, you can use either of the following options:
+Use the `add_mark_mapping` keymap or the function `require('bufferchad').mark_this_buffer()` to mark the current file in the last position of the register. Then, to navigate, you can use either of the following options:
 * `require("bufferchad").nav_to_marked(MARK_NUMBER)` (replace MARK_NUMBER with your mark number) to navigate to that mark.
 * Use your marks list using the `mark_mapping` or the `normal_editor_mapping` keybinding.
 
