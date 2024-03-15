@@ -25,7 +25,7 @@ require("lazy").setup({
 		-- cond = false,
 	},
 	{ 'echasnovski/mini.pick', version = false, config = function() require("mini.pick").setup({}) end },
--- {'Yggdroot/LeaderF', event = "VeryLazy"},
+	-- {'Yggdroot/LeaderF', event = "VeryLazy"},
 	-- { "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
 	{
 		"mrquantumcodes/bufferchad.nvim",
@@ -58,7 +58,8 @@ require("lazy").setup({
 		-- 	{ "<leader>cop", "<cmd>echo 'Copilot Enabled'<cr>", desc = "Copilot" },
 		-- },
 		ft = {
-			"php", "html", "css", "js", "json", "yaml", "lua", "vim", "markdown", "c", "cpp", "rust", "python", "ruby", "go", "typescript", "javascript", "scss", "sass", "less", "stylus", "graphql"
+			"php", "html", "css", "js", "json", "yaml", "lua", "vim", "markdown", "c", "cpp", "rust", "python", "ruby",
+			"go", "typescript", "javascript", "scss", "sass", "less", "stylus", "graphql"
 		}
 	},
 })

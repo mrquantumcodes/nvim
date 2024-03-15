@@ -11,7 +11,7 @@ vim.opt.clipboard     = "unnamedplus"
 -- Set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
-vim.cmd('set path+=**')     -- search current directory recursively
+vim.cmd('set path+=**') -- search current directory recursively
 
 
 vim.opt.title         = true -- show title

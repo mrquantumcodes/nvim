@@ -125,7 +125,7 @@ require("lazy").setup({
 		"mrquantumcodes/retrospect.nvim",
 		event = "VeryLazy",
 		config = function()
-			retrospect = require('retrospect')
+			retrospect = require('lua.retrospectt.lua.retrospect')
 			retrospect.setup({
 				style = "modern"
 			})
