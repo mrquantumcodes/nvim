@@ -42,5 +42,6 @@
 		"php": [
 			"jquery"
 		]
-	}
+	},
+	"markdown-preview-enhanced.enableScriptExecution": true
 }

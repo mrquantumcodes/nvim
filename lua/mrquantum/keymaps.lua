@@ -70,30 +70,33 @@ vim.keymap.set("n", "<leader>f", ":Pick files tool='git'<CR>")
 vim.keymap.set("n", "<leader>r", ":Pick files tool='rg'<CR>")
 vim.keymap.set("n", "<leader>g", ":Pick grep<CR>")
 
--- vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
--- 
--- vim.api.nvim_set_keymap("n", "<leader>g", "", {
--- 	noremap = true,
--- 	silent = true,
--- 	callback = function()
--- 		vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
--- 		vim.cmd([[set grepformat=%f:%l:%c:%m]])
--- 
--- 		search = vim.fn.input("Enter search term: ")
--- 
--- 		-- filetype = vim.fn.input("Enter filetype: ")
--- 
--- 		spdir = vim.fn.input("Enter specific directory: ")
--- 		vim.cmd(':silent grep! "' .. search .. '" ' .. spdir .. ' | cope')
--- 
--- 		print("Search complete")
--- 
--- 		-- vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
--- 
--- 		-- open quickfix window
--- 		-- vim.cmd(":copen")
--- 	end
--- })
+vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
+
+vim.api.nvim_set_keymap("n", "<leader>p", "", {
+	noremap = true,
+	silent = true,
+	callback = function()
+		vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
+		vim.cmd([[set grepformat=%f:%l:%c:%m]])
+
+		search = vim.fn.input("Enter search term: ")
+		if search == "" then
+			return
+		end
+
+		-- filetype = vim.fn.input("Enter filetype: ")
+
+		spdir = vim.fn.input("Enter specific directory: ")
+		vim.cmd(':silent grep! "' .. search .. '" ' .. spdir .. ' | cope')
+
+		print("Search complete")
+
+		-- vim.cmd(":1000vimgrep /" .. search .. "/j **/*." .. filetype)
+
+		-- open quickfix window
+		-- vim.cmd(":copen")
+	end
+})
 
 
 cocInstallString =
@@ -121,6 +124,12 @@ vim.keymap.set('i', '<C-k>', '<Up>')
 vim.keymap.set('i', '<C-j>', '<Down>')
 vim.keymap.set('i', '<C-b>', '<Esc>bi')
 vim.keymap.set('i', '<C-e>', '<Esc>ea')
+
+
+vim.keymap.set('n', '<C-h>', ':lua require("bufferchad").nav_to_marked(1)<CR>')
+vim.keymap.set('n', '<C-j>', ':lua require("bufferchad").nav_to_marked(2)<CR>')
+vim.keymap.set('n', '<C-k>', ':lua require("bufferchad").nav_to_marked(3)<CR>')
+vim.keymap.set('n', '<C-l>', ':lua require("bufferchad").nav_to_marked(4)<CR>')
 
 
 vim.keymap.set("i", "<Tab>", "coc#pum#visible() ? '<Tab>' : '<Tab>'", { expr = true })

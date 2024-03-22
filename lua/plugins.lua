@@ -27,6 +27,12 @@ require("lazy").setup({
 	{ 'echasnovski/mini.pick', version = false, config = function() require("mini.pick").setup({}) end },
 	-- {'Yggdroot/LeaderF', event = "VeryLazy"},
 	-- { "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
+	{"mrquantumcodes/configpulse"},
+	-- init.lua:
+    -- {
+    -- 'nvim-telescope/telescope.nvim', tag = '0.1.6',
+    --   dependencies = { 'nvim-lua/plenary.nvim' }
+    -- },
 	{
 		"mrquantumcodes/bufferchad.nvim",
 		event = "VeryLazy",
@@ -37,7 +43,7 @@ require("lazy").setup({
 				mark_mapping = "<leader>m",
 				-- order = "LAST_USED_UP",
 				close_mapping = "q",
-				style = "default",
+				style = "normal",
 			})
 		end
 	},
@@ -47,7 +53,7 @@ require("lazy").setup({
 		config = function()
 			retrospect = require('retrospect')
 			retrospect.setup({
-				style = "modern"
+				style = "default"
 			})
 		end
 	},
@@ -63,3 +69,4 @@ require("lazy").setup({
 		}
 	},
 })
+

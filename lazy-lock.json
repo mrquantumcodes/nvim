@@ -1,8 +1,11 @@
 {
-  "bufferchad.nvim": { "branch": "main", "commit": "5850c59b93e6b82c93728feba1fb33af5499e45a" },
+  "bufferchad.nvim": { "branch": "main", "commit": "a918c07ddbafc71f60372f7051aa15756be568aa" },
   "coc.nvim": { "branch": "release", "commit": "a0f3e2c1b13157a25063b32b49debf46cc96a873" },
+  "configpulse": { "branch": "main", "commit": "f045aabd4b070b39c70f1fe9a7b1e6e9d18a9660" },
   "copilot.vim": { "branch": "release", "commit": "9484e35cf222e9360e05450622a884f95c662c4c" },
-  "lazy.nvim": { "branch": "main", "commit": "83493db50a434a4c5c648faf41e2ead80f96e478" },
-  "mini.pick": { "branch": "main", "commit": "3276a2d9e8b28e0d3ce89ee4c547cea3745961ba" },
-  "retrospect.nvim": { "branch": "main", "commit": "1efdc6639c5ec556542c4d436e8e3c3ec13243f7" }
+  "lazy.nvim": { "branch": "main", "commit": "3132d7d27d56d6bb4bdd0a09623d162b3cf1c588" },
+  "mini.pick": { "branch": "main", "commit": "44f88b8f7c019b6bdf63939fde9721a15c2829b3" },
+  "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
+  "retrospect.nvim": { "branch": "main", "commit": "db133928e0b8f72a123b57d2c0e8d561ec4c7f96" },
+  "telescope.nvim": { "branch": "master", "commit": "6312868392331c9c0f22725041f1ec2bef57c751" }
 }

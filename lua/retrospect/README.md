@@ -9,6 +9,10 @@ Retrospect.nvim is a Neovim plugin that simplifies session management by allowin
 * Sessions are sorted by order of usage so your last used session is always on top
 * Preserve the order of buffer usage automagically so plugins like Bufferchad.nvim and Telescope's Buffer View (MRU) still show the same order after restart, something that's not possible with the default session management
 
+# What's new
+
+* Telescope Integration
+
 
 ## Packer Install Instruction
 
@@ -29,12 +33,11 @@ local retrospect = require('retrospect')
 retrospect.setup({
   saveKey = "<leader>\\", -- The shortcut to save the session, default is leader+backslash(\)
   loadKey = "<leader><BS>", -- The shortcut to load the session
-  style = "default", -- or "modern", if you have nui.nvim and dressing.nvim
-  auto_buffer_reorder = false -- set to true if you want to retain the buffer order of usage
+  style = "default", -- default (no dependencies) | modern (requires nui.nvim and dressing.nvim), telescope (requires telescope)
 })
 ```
 
-You can customize the saveKey, loadKey, style and auto_buffer_reorder options to fit your preferences.
+You can customize the saveKey, loadKey and style options to fit your preferences.
 
 
 ## Usage

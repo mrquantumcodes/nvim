@@ -6,6 +6,8 @@ require("plugins");
 require("mrquantum.wordplay");
 require("mrquantum.keymaps");
 
+require("configpulse.lua.configpulse");
+
 vim.opt.clipboard     = "unnamedplus"
 
 -- Set termguicolors to enable highlight groups

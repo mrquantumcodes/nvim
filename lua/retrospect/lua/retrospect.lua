@@ -202,6 +202,64 @@ M.RestoreSession = function()
         -- statusline()
       end
     end)
+  elseif pcall(require, 'telescope') and M.opts.style == "telescope" then
+    local action_state = require("telescope.actions.state")
+    local action_utils = require("telescope.actions.utils")
+    local entry_display = require("telescope.pickers.entry_display")
+    local finders = require("telescope.finders")
+    local pickers = require("telescope.pickers")
+    local conf = require("telescope.config").values
+
+    -- new telescope picker
+    pickers.new({}, {
+      prompt_title = "Select a session to restore",
+      finder = finders.new_table {
+        results = slist,
+        entry_maker = function(entry)
+          return {
+            display = entry,
+            value = entry,
+            ordinal = entry,
+          }
+        end,
+      },
+      sorter = conf.generic_sorter({}),
+      attach_mappings = function(prompt_bufnr, map)
+        local restore_session = function()
+          local selection = action_state.get_selected_entry()
+          if selection then
+            local selected = selection.value
+
+            if selected ~= "" and selected ~= nil then
+              vim.cmd('bufdo! bd')
+
+              CurrSessionCwd = pathToFilename(selected:gsub(".vim", ""))
+
+              local session_path = session_dir .. pathToFilename(selected:gsub(".vim", "")) .. ".vim"
+              vim.cmd("so " .. session_path)
+
+              ignoreProblematicBuffers()
+
+              local sessions_list_path = session_dir .. "sessions_list.txt"
+              updateSessionsList(sessions_list_path, pathToFilename(selected:gsub(".vim", "")))
+
+              print("Session restored")
+
+              if should_reorder then
+                -- ReorderBuffers()
+              end
+
+              -- statusline()
+            end
+          end
+        end
+
+        map("i", "<CR>", restore_session)
+        map("n", "<CR>", restore_session)
+
+        return true
+      end,
+    }):find()
   else
     local bufnr = vim.api.nvim_create_buf(false, true)
 
@@ -359,7 +417,7 @@ function ReverseTable(t)
   local reversedTable = {}
   local itemCount = #t
   for k, v in ipairs(t) do
-      reversedTable[itemCount + 1 - k] = v
+    reversedTable[itemCount + 1 - k] = v
   end
   return reversedTable
 end
@@ -383,7 +441,7 @@ function ReorderBuffers()
 
   local ls_output = vim.split(FileContents, "\n")
   -- local ls_output = vim.split(vim.fn.execute("ls"), "\n")
-  
+
   ls_output = ReverseTable(ls_output)
 
   -- Iterate through the list of files and open them in order

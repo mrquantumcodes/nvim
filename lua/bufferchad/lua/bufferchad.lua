@@ -84,6 +84,13 @@ M.setup = function(options)
 				end
 			})
 	end
+
+
+
+	if options.add_mark_mapping ~= "NONE" then
+	vim.api.nvim_set_keymap('n', options.add_mark_mapping or "mset", "",
+		{ noremap = true, silent = true, callback = function() M.push_current_buffer_to_marked() end })
+	end
 end
 
 function removePathFromFullPath(fullPath, pathToRemove)
@@ -403,11 +410,6 @@ function findMarkedBuffer(bufname)
 	return nil
 end
 
-if options.add_mark_mapping ~= "NONE" then
-vim.api.nvim_set_keymap('n', options.add_mark_mapping or "mset", "",
-	{ noremap = true, silent = true, callback = function() M.push_current_buffer_to_marked() end })
-end
-
 -- Define the mappings for mdel
 vim.api.nvim_set_keymap('n', string.format('mdel', i), "",
 	{
@@ -468,6 +470,8 @@ M.nav_to_marked = function(n)
 				table.remove(M.marked, k)
 			end
 		end
+
+		print("Navigating to buffer " .. M.marked[n])
 
 		vim.cmd('buffer ' .. M.marked[n])
 	end

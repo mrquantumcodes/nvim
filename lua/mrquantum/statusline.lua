@@ -1,7 +1,7 @@
 -- vim.cmd("colorscheme sorbet")
-vim.cmd("colorscheme wildcharm")
+vim.cmd("colorscheme habamax")
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
 vim.api.nvim_set_hl(0, "StatusType", { bg="#b16286", fg="#1d2021" });
 vim.api.nvim_set_hl(0, "StatusFile", { bg="#fabd2f", fg="#1d2021" });
@@ -27,6 +27,12 @@ vim.api.nvim_set_hl(0, "FloatBorder", { bg="none" });
 vim.cmd("hi NormalFloat guibg=none")
 vim.cmd("hi FloatBorder guibg=#ccc")
 
+
+-- vim.api.nvim_create_autocmd({'BufEnter', 'BufLeave'}, {
+--   callback = function()
+-- 	  statusline()
+-- 	end
+-- })
 
 -- devicons = require 'nvim-web-devicons'
 
@@ -60,27 +66,26 @@ function subtract_cwd()
 	end
   end  
 
-function statusline()
-    -- f_icon = (vim.bo.filetype ~= "" and devicons.get_icon("", vim.bo.filetype) or "-")
 
-    vim.o.statusline = table.concat({
+configpulse = require('configpulse').get_time()
+function statusline(update_configpulse)
+
+	if update_configpulse then
+		configpulse = require('configpulse').get_time()
+	end
+
+
+    -- f_icon = (vim.bo.filetype ~= "" and devicons.get_icon("", vim.bo.filetype) or "-")
+	--
+
+    vim.opt.statusline = table.concat({
         ""
         ," "
         ,"%l"
-        ," "
-        ," %#StatusType#"
-        ,"<< "
-        -- ,.. f_icon .. " %Y"
-        -- ,.. " 📃 "
-        ," >>"
-        ,"%#StatusFile#"
-        ,"<< "
-        ,subtract_cwd()
-        ," >>"
         ,"%#StatusModified#"
         ," "
         ,"%m"
-        ," "
+        ," Config Last Modified " .. configpulse.days .. " Days, " .. configpulse.hours .. " Hours, " .. configpulse.minutes .. " Minutes Ago"
         ,"%#StatusNorm#"
         ,"%="
         ,"%#StatusBuffer#"
@@ -102,9 +107,4 @@ end
 
 statusline()
 
-vim.cmd([[
-  augroup BufferChange
-    autocmd!
-    autocmd BufEnter,BufLeave * lua statusline()
-  augroup END
-]])
+vim.keymap.set("n", "<leader>ss", ":lua statusline(true); print('Statusline Updated')<CR>", { noremap = true, silent = true, expr = false })
