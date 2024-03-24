@@ -6,7 +6,7 @@ require("plugins");
 require("mrquantum.wordplay");
 require("mrquantum.keymaps");
 
-require("configpulse.lua.configpulse");
+-- require("configpulse");
 
 vim.opt.clipboard     = "unnamedplus"
 

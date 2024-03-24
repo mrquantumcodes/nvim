@@ -15,6 +15,14 @@ vim.keymap.set('i', '<A-j>',
 vim.keymap.set('i', '<A-k>',
 	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>a')
 
+-- Map Ctrl-j to insert a new line below and return to the exact cursor position
+vim.keymap.set('n', '<A-j>',
+	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>o<Up><Esc>:call setpos(".", g:saved_cursor_position)<CR>')
+
+-- Map Ctrl-k to insert a new line above and return to the exact cursor position
+vim.keymap.set('n', '<A-k>',
+	'<Esc>:let g:saved_cursor_position = getpos(".")<CR>O<Down><Esc>:let g:saved_cursor_position[1] = g:saved_cursor_position[1] + 1<CR>:call setpos(".", g:saved_cursor_position)<CR>')
+
 
 -- Map Ctrl+o for accept suggestion in Coc.nvim
 vim.api.nvim_set_keymap('i', '<C-o>', "coc#pum#visible() ? coc#_select_confirm() : '<C-o>'",
