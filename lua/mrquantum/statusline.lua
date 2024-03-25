@@ -21,7 +21,10 @@ vim.cmd("hi FloatBorder guibg=#ccc")
 
 vim.api.nvim_create_autocmd({'BufEnter', 'BufLeave'}, {
 	callback = function()
-		statusline()
+		curr_buffer = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+		if vim.fn.filereadable(curr_buffer) == 1 then
+			statusline()
+		end
 	end
 })
 
@@ -117,11 +120,11 @@ function get_buffer_list()
 	-- print(bufferList[1])
 	for bufferName in ls_cmd:gmatch("[^\n]+") do
 		bufferName = bufferName:match("\"(.-)\"")
-			bufferName = bufferName:gsub("\\", "/")
+		bufferName = bufferName:gsub("\\", "/")
 
-			if bufferName == "" or bufferName == "[No Name]" then
-				-- goto continue
-			else
+		if bufferName == "" or bufferName == "[No Name]" then
+			-- goto continue
+		else
 
 			-- print(vim.inspect(bufferList))
 			table.insert(bufferList, transformPath(bufferName))
@@ -130,7 +133,7 @@ function get_buffer_list()
 			-- bufNameTransformed = transformPath(bufferName)
 
 
-			end
+		end
 
 		-- end
 	end
@@ -153,36 +156,36 @@ function get_buffer_list()
 
 	for i, buffer in ipairs(bufferList) do
 		local bufferName = buffer
-			bufferNameShort = transformPath(bufferName)
-			-- print(bufferNameShort)
+		bufferNameShort = transformPath(bufferName)
+		-- print(bufferNameShort)
 
-			if bufferNameShort == nil then
-				bufferNameShort = bufferName
-			end
-			local bufferNameShortLen = #bufferNameShort
+		if bufferNameShort == nil then
+			bufferNameShort = bufferName
+		end
+		local bufferNameShortLen = #bufferNameShort
 
-			if bufferNameShort == "" then
-				goto continue
-			end
+		if bufferNameShort == "" then
+			goto continue
+		end
 
-			if i == 1 then
-				bufferString = " " .. bufferString .. "%#StatusBuffer# "
-			else
-				bufferString = " " .. bufferString .. " %#StatusFile# "
-				bufferNameShort = bufferNameShort:match("([^/]+)$")
-			end
+		if i == 1 then
+			bufferString = " " .. bufferString .. "%#StatusBuffer# "
+		else
+			bufferString = " " .. bufferString .. " %#StatusFile# "
+			bufferNameShort = bufferNameShort:match("([^/]+)$")
+		end
 
-			bufferString = bufferString .. bufferNameShort
+		bufferString = bufferString .. bufferNameShort
 
-			if i < #bufferList then
-				bufferString = bufferString .. " "
-			end
+		if i < #bufferList then
+			bufferString = bufferString .. " "
+		end
 
-			-- if buffer string is going out of bounds, break
-			if #bufferString > 102 then
-				bufferString = bufferString .. " %#StatusNorm# ....."
-				break
-			end
+		-- if buffer string is going out of bounds, break
+		if #bufferString > 102 then
+			bufferString = bufferString .. " %#StatusNorm# ....."
+			break
+		end
 
 		-- end
 
