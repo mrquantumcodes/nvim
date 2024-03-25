@@ -28,17 +28,17 @@ vim.cmd("hi NormalFloat guibg=none")
 vim.cmd("hi FloatBorder guibg=#ccc")
 
 
--- vim.api.nvim_create_autocmd({'BufEnter', 'BufLeave'}, {
---   callback = function()
--- 	  statusline()
--- 	end
--- })
+vim.api.nvim_create_autocmd({'BufEnter', 'BufLeave'}, {
+	callback = function()
+		statusline()
+	end
+})
 
 -- devicons = require 'nvim-web-devicons'
 
 -- Function to subtract the cwd directory from a given path
 function subtract_cwd()
-    -- Replace backslashes with forward slashes for platform independence
+	-- Replace backslashes with forward slashes for platform independence
 	fullPath = vim.fn.expand('%:p'):gsub("\\", "/")
 	pathToRemove = vim.fn.getcwd():gsub("\\", "/")
 
@@ -64,10 +64,174 @@ function subtract_cwd()
 	else
 		return fullPath
 	end
-  end  
+end  
 
+function table_contains(tbl, x)
+	found = false
+	for _, v in pairs(tbl) do
+		if v == x then 
+			found = true 
+		end
+	end
+	return found
+end
+
+function array_reverse(x)
+	local n, m = #x, #x/2
+	for i=1, m do
+		x[i], x[n-i+1] = x[n-i+1], x[i]
+	end
+	return x
+end
+
+
+
+function transformPath(inputPath)
+	-- Replace backslashes with forward slashes
+	local cleanedPath = inputPath:gsub(vim.fn.getcwd(), ""):gsub("\\", "/")
+	-- local cleanedPath = inputPath:gsub("\\", "/")
+
+	-- Split the path into directory and filename parts
+	local parts = {}
+	for part in cleanedPath:gmatch("[^/]+") do
+		table.insert(parts, part)
+	end
+
+	-- Process directory names (except the last one)
+	local transformedPath = ""
+	for i = 1, #parts - 1 do
+		local dirName = parts[i]
+		local firstLetter = dirName:sub(1, 1)
+		transformedPath = transformedPath .. "/" .. firstLetter
+	end
+
+	-- Append the filename
+	transformedPath = transformedPath .. "/" .. parts[#parts]
+
+	return transformedPath
+end
+
+-- Example usage
+
+-- get buffer list and concatenate it into a string, with the current buffer highlighted
+function get_buffer_list()
+	local ls_cmd = vim.api.nvim_exec("ls t", true)
+
+	-- extract buffer names from ls command
+	bufferList = {}
+	curr_buffer = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+	if vim.fn.filereadable(curr_buffer) == 1 then
+		table.insert(bufferList, transformPath(subtract_cwd(curr_buffer)))
+	end
+	-- print(bufferList[1])
+	for bufferName in ls_cmd:gmatch("[^\n]+") do
+		bufferName = bufferName:match("\"(.-)\"")
+		-- print(bufferName, curr_buffer:gsub(vim.fn.getcwd(), ""))
+			-- get string between double quotes
+			-- replace backslashes with forward slashes
+			bufferName = bufferName:gsub("\\", "/")
+
+			if bufferName == "" or bufferName == "[No Name]" then
+				-- goto continue
+			else
+
+			-- print(vim.inspect(bufferList))
+			table.insert(bufferList, transformPath(bufferName))
+
+			-- currBufTransformed = transformPath(curr_buffer:gsub(vim.fn.getcwd(), ""))
+			-- bufNameTransformed = transformPath(bufferName)
+
+
+			end
+
+		-- end
+	end
+
+	-- if empty buffer list, return
+	if #bufferList == 0 then
+		return ""
+	end
+
+	-- reverse the buffer list so that the most recently opened buffer is first
+	-- bufferList = array_reverse(bufferList)
+
+
+	-- print(vim.inspect(bufferList))
+
+	local bufferString = ""
+	local currentBuffer = vim.api.nvim_get_current_buf()
+
+	-- local myBufferList = {}
+
+	for i, buffer in ipairs(bufferList) do
+		-- local bufferName = vim.api.nvim_buf_get_name(buffer)
+		local bufferName = buffer
+		-- if vim.fn.filereadable(bufferName) == 1 then
+			-- print(vim.inspect(buffer))
+
+			-- local bufferNameShort = subtract_cwd(bufferName)
+			-- only filename
+			-- bufferNameShort = bufferName:match("^.+/(.+)$")
+			bufferNameShort = transformPath(bufferName)
+			-- print(bufferNameShort)
+
+			if bufferNameShort == nil then
+				bufferNameShort = bufferName
+			end
+			-- print(vim.api.nvim_buf_get_name(currentBuffer):gsub("\\", "/"):match("^.+/(.+)$") == bufferNameShort)
+			local bufferNameShortLen = #bufferNameShort
+
+			if bufferNameShort == "" then
+				goto continue
+			end
+
+			-- print(bufferNameShort, bufferList[1]:match("^.+/(.+)$"))
+			-- print(i)
+
+			if i == 1 then
+				bufferString = " " .. bufferString .. "%#StatusBuffer# "
+			else
+				bufferString = " " .. bufferString .. " %#StatusFile# "
+			end
+
+			bufferString = bufferString .. bufferNameShort
+
+			if i < #bufferList then
+				bufferString = bufferString .. " "
+			end
+
+			-- if buffer string is going out of bounds, break
+			if #bufferString > 120 then
+				bufferString = bufferString .. " %#StatusNorm# And some more....."
+				break
+			end
+
+		-- end
+
+		::continue::
+
+	end
+
+	return bufferString
+end
+
+-- get the current buffer number
+function get_buffer_number()
+	return vim.api.nvim_get_current_buf()
+end
+
+-- get the current buffer name
+function get_buffer_name()
+	return subtract_cwd(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+end
+
+-- get the current buffer type
+function get_buffer_type()
+	return vim.bo.filetype
+end
 
 configpulse = require('configpulse').get_time()
+
 function statusline(update_configpulse)
 
 	if update_configpulse then
@@ -75,34 +239,40 @@ function statusline(update_configpulse)
 	end
 
 
-    -- f_icon = (vim.bo.filetype ~= "" and devicons.get_icon("", vim.bo.filetype) or "-")
+
+	-- f_icon = (vim.bo.filetype ~= "" and devicons.get_icon("", vim.bo.filetype) or "-")
 	--
 
-    vim.opt.statusline = table.concat({
-        ""
-        ," "
-        ,"%l"
-        ,"%#StatusModified#"
-        ," "
-        ,"%m"
-        ," Config Last Modified " .. configpulse.days .. " Days, " .. configpulse.hours .. " Hours, " .. configpulse.minutes .. " Minutes Ago"
-        ,"%#StatusNorm#"
-        ,"%="
-        ,"%#StatusBuffer#"
-        ,"<< "
-        ,"📟"
-        ,"%n"
-        ," >>"
-        ,"%#StatusLocation#"
-        ,"<< "
-        ,"📁 "
-        ,"%l,%c"
-        ," >>"
-        ,"%#StatusPercent#"
-        ,"<< "
-        ,"%p%%  "
-        ," >> "
-    })
+	vim.opt.statusline = table.concat({
+		""
+		," "
+		,"%l"
+		,"%#StatusModified#"
+		," "
+		,"%m"
+		," Configpulse " .. configpulse.days .. ":" .. configpulse.hours .. ":" .. configpulse.minutes .. ""
+		-- Buffer List
+		-- ,"%#StatusFile#"
+		-- ," "
+		,get_buffer_list()
+		," "
+		,"%#StatusNorm#"
+		,"%="
+		,"%#StatusBuffer#"
+		,"<< "
+		,"📟"
+		,"%n"
+		," >>"
+		,"%#StatusLocation#"
+		,"<< "
+		,"📁 "
+		,"%l,%c"
+		," >>"
+		,"%#StatusPercent#"
+		,"<< "
+		,"%p%%  "
+		," >> "
+	})
 end
 
 statusline()
