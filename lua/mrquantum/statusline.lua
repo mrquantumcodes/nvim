@@ -118,6 +118,7 @@ function get_buffer_list()
 		table.insert(bufferList, transformPath(subtract_cwd(curr_buffer)))
 	end
 	-- print(bufferList[1])
+	local j = 1
 	for bufferName in ls_cmd:gmatch("[^\n]+") do
 		bufferName = bufferName:match("\"(.-)\"")
 		bufferName = bufferName:gsub("\\", "/")
@@ -127,7 +128,11 @@ function get_buffer_list()
 		else
 
 			-- print(vim.inspect(bufferList))
-			table.insert(bufferList, transformPath(bufferName))
+			if j ~= 1 then
+				table.insert(bufferList, transformPath(bufferName))
+			else
+				j = j + 1
+			end
 
 			-- currBufTransformed = transformPath(curr_buffer:gsub(vim.fn.getcwd(), ""))
 			-- bufNameTransformed = transformPath(bufferName)
