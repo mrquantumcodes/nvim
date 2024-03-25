@@ -16,9 +16,9 @@ vim.opt.termguicolors = true
 vim.cmd('set path+=**') -- search current directory recursively
 
 
-vim.opt.title         = true -- show title
+-- vim.opt.title         = true -- show title
 vim.opt.syntax        = "ON"
-vim.opt.showtabline   = 2    -- always show the tab line
+-- vim.opt.showtabline   = 2    -- always show the tab line
 vim.opt.scrolloff     = 8    -- scroll page when cursor is 8 lines from top/bottom
 vim.opt.sidescrolloff = 8    -- scroll page when cursor is 8 spaces from left/right
 vim.opt.laststatus    = 2    -- always show statusline
@@ -65,7 +65,7 @@ vim.opt.foldmethod = "manual"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
-vim.opt.showtabline = 2
+vim.opt.showtabline = 1
 
 vim.cmd('set guicursor=n-v-c-i:block')
 

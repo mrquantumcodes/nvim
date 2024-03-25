@@ -14,15 +14,6 @@ vim.api.nvim_set_hl(0, "StatusNorm", { bg="none", fg="white" });
 vim.api.nvim_set_hl(0, "NormalFloat", { bg="none" });
 vim.api.nvim_set_hl(0, "FloatBorder", { bg="none" });
 
--- vim.cmd("hi NormalFloat guibg=none")
--- vim.cmd("hi FloatBorder guibg=#ccc")
--- vim.cmd "highlight StatusType guibg=#b16286 guifg=#1d2021"
--- vim.cmd "highlight StatusFile guibg=#fabd2f guifg=#1d2021"
--- vim.cmd "highlight StatusModified guibg=#1d2021 guifg=#d3869b"
--- vim.cmd "highlight StatusBuffer guibg=#98971a guifg=#1d2021"
--- vim.cmd "highlight StatusLocation guibg=#458588 guifg=#1d2021"
--- vim.cmd "highlight StatusPercent guibg=#1d2021 guifg=#ebdbb2"
--- vim.cmd "highlight StatusNorm guibg=none guifg=white"
 
 vim.cmd("hi NormalFloat guibg=none")
 vim.cmd("hi FloatBorder guibg=#ccc")
@@ -126,9 +117,6 @@ function get_buffer_list()
 	-- print(bufferList[1])
 	for bufferName in ls_cmd:gmatch("[^\n]+") do
 		bufferName = bufferName:match("\"(.-)\"")
-		-- print(bufferName, curr_buffer:gsub(vim.fn.getcwd(), ""))
-			-- get string between double quotes
-			-- replace backslashes with forward slashes
 			bufferName = bufferName:gsub("\\", "/")
 
 			if bufferName == "" or bufferName == "[No Name]" then
@@ -164,34 +152,24 @@ function get_buffer_list()
 	-- local myBufferList = {}
 
 	for i, buffer in ipairs(bufferList) do
-		-- local bufferName = vim.api.nvim_buf_get_name(buffer)
 		local bufferName = buffer
-		-- if vim.fn.filereadable(bufferName) == 1 then
-			-- print(vim.inspect(buffer))
-
-			-- local bufferNameShort = subtract_cwd(bufferName)
-			-- only filename
-			-- bufferNameShort = bufferName:match("^.+/(.+)$")
 			bufferNameShort = transformPath(bufferName)
 			-- print(bufferNameShort)
 
 			if bufferNameShort == nil then
 				bufferNameShort = bufferName
 			end
-			-- print(vim.api.nvim_buf_get_name(currentBuffer):gsub("\\", "/"):match("^.+/(.+)$") == bufferNameShort)
 			local bufferNameShortLen = #bufferNameShort
 
 			if bufferNameShort == "" then
 				goto continue
 			end
 
-			-- print(bufferNameShort, bufferList[1]:match("^.+/(.+)$"))
-			-- print(i)
-
 			if i == 1 then
 				bufferString = " " .. bufferString .. "%#StatusBuffer# "
 			else
 				bufferString = " " .. bufferString .. " %#StatusFile# "
+				bufferNameShort = bufferNameShort:match("([^/]+)$")
 			end
 
 			bufferString = bufferString .. bufferNameShort
@@ -201,8 +179,8 @@ function get_buffer_list()
 			end
 
 			-- if buffer string is going out of bounds, break
-			if #bufferString > 120 then
-				bufferString = bufferString .. " %#StatusNorm# And some more....."
+			if #bufferString > 102 then
+				bufferString = bufferString .. " %#StatusNorm# ....."
 				break
 			end
 
