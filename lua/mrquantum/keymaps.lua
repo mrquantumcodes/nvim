@@ -141,3 +141,10 @@ vim.keymap.set('n', '<C-l>', ':lua require("bufferchad").nav_to_marked(4)<CR>')
 
 
 vim.keymap.set("i", "<Tab>", "coc#pum#visible() ? '<Tab>' : '<Tab>'", { expr = true })
+
+
+-- remap arrow keys to resize windows
+vim.keymap.set('n', '<Up>', ':resize -2<CR>')
+vim.keymap.set('n', '<Down>', ':resize +2<CR>')
+vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>')
+vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>')

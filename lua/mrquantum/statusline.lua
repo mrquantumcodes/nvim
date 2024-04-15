@@ -19,7 +19,9 @@ vim.cmd("hi NormalFloat guibg=none")
 vim.cmd("hi FloatBorder guibg=#ccc")
 
 
-vim.api.nvim_create_autocmd({'BufEnter', 'BufLeave'}, {
+vim.api.nvim_create_autocmd({'BufEnter'
+-- , 'BufLeave'
+}, {
 	callback = function()
 		curr_buffer = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
 		if vim.fn.filereadable(curr_buffer) == 1 then
