@@ -72,3 +72,9 @@ vim.cmd('set guicursor=n-v-c-i:block')
 -- -- Set autoindent to always true
 vim.opt.smartindent = true
 vim.opt.autoindent = true
+
+-- set autocmd to set vim.o.timeoutlen = 120 in insert mode then set it back to 1000 in normal mode
+vim.cmd([[
+  autocmd InsertEnter * set timeoutlen=50
+  autocmd InsertLeave * set timeoutlen=1000
+]])
