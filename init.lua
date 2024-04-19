@@ -75,6 +75,6 @@ vim.opt.autoindent = true
 
 -- set autocmd to set vim.o.timeoutlen = 120 in insert mode then set it back to 1000 in normal mode
 vim.cmd([[
-  autocmd InsertEnter * set timeoutlen=50
+  autocmd InsertEnter * set timeoutlen=120
   autocmd InsertLeave * set timeoutlen=1000
 ]])
