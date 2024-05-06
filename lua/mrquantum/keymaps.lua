@@ -1,10 +1,14 @@
-vim.g.mapleader = " ";
 vim.g.netrw_banner    = 0   -- gets rid of the annoying banner for netrw
 
 vim.keymap.set("n", "<leader>w", ":w<CR>:lua retrospect.SaveSession()<CR>");
 vim.keymap.set("i", "jk", "<Esc>");
 vim.keymap.set("i", "kj", "<Esc>");
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex);
+
+vim.keymap.set("n", "<C-q>", "<C-v>");
+vim.keymap.set("i", "<C-v>", "<MiddleMouse>");
+vim.keymap.set("c", "<C-v>", "<MiddleMouse>");
+
+-- vim.keymap.set("n", "<leader>e", vim.cmd.Ex);
 vim.keymap.set("n", "<leader>d", vim.cmd.bd);
 
 -- Map Ctrl-j to insert a new line below and return to the exact cursor position
@@ -45,17 +49,17 @@ vim.api.nvim_set_keymap('i', '<C-e>', 'coc#refresh()', { noremap = true, expr = 
 -- See plugins_lazy
 -- vim.api.nvim_set_keymap("n", "<leader>ee", ":Neotree float<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<leader>e", "", {
-	noremap = true,
-	silent = true,
-	callback = function()
-		filesearch = vim.fn.expand("%:t")
-		-- print(":25Vex<CR>:call search('" .. filesearch .. "')<CR>")
-		-- vim.cmd(":25Vex")
-		vim.cmd(":Ex")
-		vim.cmd(":call search('" .. filesearch .. "')")
-	end
-})
+-- vim.api.nvim_set_keymap("n", "<leader>e", "", {
+-- 	noremap = true,
+-- 	silent = true,
+-- 	callback = function()
+-- 		filesearch = vim.fn.expand("%:t")
+-- 		-- print(":25Vex<CR>:call search('" .. filesearch .. "')<CR>")
+-- 		-- vim.cmd(":25Vex")
+-- 		vim.cmd(":Ex")
+-- 		vim.cmd(":call search('" .. filesearch .. "')")
+-- 	end
+-- })
 
 
 vim.api.nvim_set_keymap('i', '<C-s>',

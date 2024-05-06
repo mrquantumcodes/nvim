@@ -1,0 +1,3 @@
+return {
+	"mrquantumcodes/configpulse"
+}

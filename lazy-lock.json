@@ -1,10 +1,11 @@
 {
-  "better-escape.nvim": { "branch": "master", "commit": "7e86edafb8c7e73699e0320f225464a298b96d12" },
   "bufferchad.nvim": { "branch": "main", "commit": "a918c07ddbafc71f60372f7051aa15756be568aa" },
-  "coc.nvim": { "branch": "release", "commit": "ca6d569d0758ad58d5c3def72ac0e09545820991" },
+  "coc.nvim": { "branch": "release", "commit": "e159d0b26277c579552fd7e171c2bf1712f0f00e" },
   "configpulse": { "branch": "main", "commit": "f045aabd4b070b39c70f1fe9a7b1e6e9d18a9660" },
   "copilot.vim": { "branch": "release", "commit": "1e135c5303bc60598f6314a2276f31dc91aa34dd" },
-  "lazy.nvim": { "branch": "main", "commit": "31ddbea7c10b6920c9077b66c97951ca8682d5c8" },
-  "mini.pick": { "branch": "main", "commit": "9738a3b9b1841c6afaff4e3538490670a848172d" },
-  "retrospect.nvim": { "branch": "main", "commit": "db133928e0b8f72a123b57d2c0e8d561ec4c7f96" }
+  "lazy.nvim": { "branch": "main", "commit": "3f13f080434ac942b150679223d54f5ca91e0d52" },
+  "mini.files": { "branch": "main", "commit": "17684f78d0499f11e54fc980838cfef3cf5c7c72" },
+  "mini.pick": { "branch": "main", "commit": "82851172cdc59ba447d69c16e8cb6e1c961ec4ad" },
+  "retrospect.nvim": { "branch": "main", "commit": "db133928e0b8f72a123b57d2c0e8d561ec4c7f96" },
+  "vim-startuptime": { "branch": "master", "commit": "ac2cccb5be617672add1f4f3c0a55ce99ba34e01" }
 }
