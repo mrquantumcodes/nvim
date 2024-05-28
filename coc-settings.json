@@ -6,7 +6,8 @@
 		"border": true,
 		"rounded": true,
 		"focusable": true,
-		"title": "LSP"
+		"title": "LSP",
+		"borderhighlight": "FloatBorder"
 	},
 	"dialog.rounded": true,
 	"emmet.includeLanguages": {

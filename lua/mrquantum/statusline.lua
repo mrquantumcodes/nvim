@@ -1,4 +1,3 @@
--- vim.cmd("colorscheme sorbet")
 vim.cmd("colorscheme sorbet")
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -12,12 +11,8 @@ vim.api.nvim_set_hl(0, "StatusPercent", { bg="#1d2021", fg="#ebdbb2" });
 vim.api.nvim_set_hl(0, "StatusNorm", { bg="none", fg="white" });
 
 vim.api.nvim_set_hl(0, "NormalFloat", { bg="none" });
-vim.api.nvim_set_hl(0, "FloatBorder", { bg="none" });
-
-
-vim.cmd("hi NormalFloat guibg=none")
-vim.cmd("hi FloatBorder guibg=#ccc")
-
+vim.api.nvim_set_hl(0, "FloatBorder", { bg="none", fg="#03AED2" });
+vim.api.nvim_set_hl(0, "FloatTitle", { bg="none", fg="#03AED2" });
 
 vim.api.nvim_create_autocmd({'BufEnter'
 -- , 'BufLeave'

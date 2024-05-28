@@ -126,6 +126,9 @@ vim.keymap.set("i", "<C-i>", "coc#float#has_scroll() ? coc#float#scroll(0) : ''"
 -- Remap Alt+Shift+F to format using Coc
 vim.api.nvim_set_keymap('n', '<A-S-F>', [[:call CocActionAsync('format')<CR>]], { noremap = true, silent = true })
 
+vim.keymap.set("n", "gd", ":call CocActionAsync('jumpDefinition')<CR>")
+vim.keymap.set("n", "K", ":call CocActionAsync('definitionHover')<CR>")
+
 
 
 vim.keymap.set('i', 'jk', '<Esc>')
