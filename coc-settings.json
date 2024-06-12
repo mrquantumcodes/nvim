@@ -42,6 +42,9 @@
 	"snippets.extends": {
 		"php": [
 			"jquery"
+		],
+		"html": [
+			"jquery"
 		]
 	},
 	"markdown-preview-enhanced.enableScriptExecution": true

@@ -1,4 +1,5 @@
 vim.cmd("colorscheme sorbet")
+-- vim.cmd("colorscheme eldritch")
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 

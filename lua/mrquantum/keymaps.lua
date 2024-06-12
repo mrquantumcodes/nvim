@@ -78,9 +78,10 @@ vim.keymap.set('n', 'Q', 'q')
 -- vim.keymap.set('n', '<leader>f', ':Leaderf file<CR>')
 -- -- vim.keymap.set('n', '<leader>g', ':Leaderf rg<CR>')
 -- vim.keymap.set('n', '=', ':Leaderf line<CR>')
-vim.keymap.set("n", "<leader>f", ":Pick files tool='git'<CR>")
-vim.keymap.set("n", "<leader>r", ":Pick files tool='rg'<CR>")
+vim.keymap.set("n", "<leader>r", ":Pick files tool='git'<CR>")
+vim.keymap.set("n", "<leader>f", ":Pick files tool='rg'<CR>")
 vim.keymap.set("n", "<leader>g", ":Pick grep<CR>")
+vim.keymap.set("n", "<leader>h", ":Pick grep_live<CR>")
 
 vim.cmd([[set grepprg=rg\ --vimgrep\ --hidden]])
 
